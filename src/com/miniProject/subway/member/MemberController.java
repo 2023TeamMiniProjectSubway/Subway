@@ -1,6 +1,6 @@
 package com.miniProject.subway.member;
 
-import com.miniProject.subway.main.Main;
+import com.miniProject.subway.view.Main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
