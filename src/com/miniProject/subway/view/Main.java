@@ -1,10 +1,7 @@
-package com.miniProject.subway.main;
+package com.miniProject.subway.view;
 
 import com.miniProject.subway.member.MemberController;
-import com.miniProject.subway.member.MemberDTO;
-import com.miniProject.subway.order.OrderController;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {                             //메뉴화면
@@ -13,7 +10,7 @@ public class Main {                             //메뉴화면
     MemberController mc = new MemberController();
     public void MainMenu() {
 
-        OrderController order = new OrderController();
+        OrderMain order = new OrderMain();
         Scanner sc = new Scanner(System.in);
 
         System.out.println("☆★☆★☆★서브웨이에 어서오세요☆★☆★☆★");
@@ -25,6 +22,7 @@ public class Main {                             //메뉴화면
             System.out.println("           ▷  1. 주문하기            ");
             System.out.println("                                   ");
             System.out.println("           ▷  0. 종료               ");
+            System.out.println("           ▶  3. 로그인없이 주문하기    ");
             System.out.println("=====================================");
 
             int mainMenu = sc.nextInt();
@@ -51,6 +49,9 @@ public class Main {                             //메뉴화면
                     System.out.println("회원 목록을 조회합니다.");
                     callMemberList();
                     break;
+                case 3 :
+                    order.orderMenu();
+
 
             }
         }

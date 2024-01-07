@@ -1,6 +1,6 @@
 package com.miniProject.subway.run;
 
-import com.miniProject.subway.main.Main;
+import com.miniProject.subway.view.Main;
 
 public class Application {                      //실행용 클래스
 
