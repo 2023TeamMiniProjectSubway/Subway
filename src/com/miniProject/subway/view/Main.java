@@ -1,19 +1,18 @@
 package com.miniProject.subway.view;
 
 import com.miniProject.subway.member.MemberController;
-import com.miniProject.subway.member.MemberDTO;
 
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {                             //메뉴화면
 
-    public static  boolean login = false;
+    public static boolean login = false;
+    MemberController mc = new MemberController();
+
 
     public void MainMenu() {
 
-        OrderMain orderMain = new OrderMain();
+        OrderMain order = new OrderMain();
         Scanner sc = new Scanner(System.in);
 
         System.out.println("☆★☆★☆★서브웨이에 어서오세요☆★☆★☆★");
@@ -25,37 +24,38 @@ public class Main {                             //메뉴화면
             System.out.println("           ▷  1. 주문하기            ");
             System.out.println("                                   ");
             System.out.println("           ▷  0. 종료               ");
+            System.out.println("           ▶  3. 로그인없이 주문하기    ");
             System.out.println("=====================================");
 
             int mainMenu = sc.nextInt();
 
             switch(mainMenu){
                 case 1 :
+                {
+                    while(login == false)                   //로그인 안되어있으면
                     {
-                        while(login == false)                   //로그인 안되어있으면
-                        {
-                            loginMenu();                       //loginMenu()로 이동
-                            break;
-                        }
-                        if(login == true)                              //로그인 되어있으면
-                        {
-                            System.out.println("         ▷ 주문을 진행합니다.");
-                            orderMain.orderMenu(); //주문 메뉴로 이동
-                            break;
-                        }
+                        loginMenu();                       //loginMenu()로 이동
+                        break;
                     }
-                    break;
+                    if(login == true)                      //로그인 되어있으면
+                    {
+                        System.out.println("         ▷ 주문을 진행합니다.");
+                        order.orderMenu();                  //주문 메뉴로 이동
+                    }
+                }
+                break;
                 case 0 :
                     System.out.println("         ▶ 메뉴를 종료합니다.");
-                    break main;                     //메뉴 종료
+                    break main;                                 //메뉴 종료
                 case 2 :
                     System.out.println("회원 목록을 조회합니다.");
                     callMemberList();
                     break;
                 case 3 :
-                    orderMain.orderMenu();
+                    order.orderMenu();
 
-            } break;
+
+            }
         }
 
 
@@ -63,7 +63,7 @@ public class Main {                             //메뉴화면
 
     public void loginMenu(){
 
-        MemberController mc = new MemberController();
+        //MemberController mc = new MemberController();
         Scanner sc = new Scanner(System.in);
 
         while(true)
@@ -94,11 +94,12 @@ public class Main {                             //메뉴화면
     }
 
     public void callMemberList(){
-        ArrayList<MemberDTO> memberDTO = new ArrayList<>();
 
-        for(int i = 0; i < memberDTO.size(); i++){
-            memberDTO.get(i).information();
-        }
+        mc.memberList();
+//        for(int i = 0; i < memberDTO.size(); i++){
+//            memberDTO.get(i).information();
+//        }
     }
+
 
 }

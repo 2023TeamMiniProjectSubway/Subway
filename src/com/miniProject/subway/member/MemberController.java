@@ -5,7 +5,7 @@ import com.miniProject.subway.view.Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MemberController extends  Main{                    // login여부를 바꾸기 위해 Main클래스를 상속함
+public class MemberController{                    // login여부를 바꾸기 위해 Main클래스를 상속함
 
     ArrayList<MemberDTO> memberDTO= new ArrayList<>();
     Scanner sc = new Scanner(System.in);
@@ -19,7 +19,12 @@ public class MemberController extends  Main{                    // login여부�
             System.out.println("=====================================");
             System.out.println("             ▷ ID :                   ");
             String id = sc.nextLine();
+            if(id.equals("")){
+                System.out.println("     ▶ 아이디를 입력해주세요    ");
+                continue;
+            }
 
+            //** 그냥 로그인 들어오면 상관없는데 로그인 실패 후 다시 돌아오면 ID=""이 돼서 입력할수없음
             System.out.println("             ▶ Password :             ");
             String pwd = sc.nextLine();
 
@@ -32,7 +37,7 @@ public class MemberController extends  Main{                    // login여부�
                         System.out.println("=====================================");
                         System.out.println("          ▷ 로그인되었습니다.            ");   //id, pwd 일치할시 로그인
                         System.out.println("=====================================");
-                        login = true;                               //로그인 되어있음
+                        Main.login = true;                               //로그인 되어있음
                         return;
                     }
                 }
@@ -50,9 +55,11 @@ public class MemberController extends  Main{                    // login여부�
 
             switch(registerSelect){
                 case 1 :                            //회원가입
+                    sc.nextLine();
                     memberRegister();
                     return;
                 case 2 :                            //로그인화면
+                    sc.nextLine();
                     break;
                 case 0 :
                     System.out.println("      ▶ 이전 화면으로 돌아갑니다.     ");
@@ -91,10 +98,6 @@ public class MemberController extends  Main{                    // login여부�
             }
             if(id.equals(""))
             {
-                System.out.println("=====================================");
-                System.out.println("       ▷ 아이디를 입력하지 않았습니다.    ");
-                System.out.println("       ▷ 다시 입력해 주세요.            ");
-                System.out.println("=====================================");
                 continue;
             }
             for(int i = 0; i < memberDTO.size(); i++){                                   //이미 가입된 ID 확인
@@ -145,9 +148,6 @@ public class MemberController extends  Main{                    // login여부�
     }
 
     public void memberList(){
-        // !! ** 멤버 전체 리스트를 띄우고싶은데 Main 클래스에서 MC 클래스를 부르면 StackOverFlow Exception(무한호출) 발생 (MC가 Main 클래스를 상속받고있기때문 -> 로그인여부(login) 변수때문에)
-        // 그래서 Main 클래스 내부의 메소드에서 선언하려하면 new 연산자때문에 객체가 새로 생성돼서 회원가입한 정보가 담긴 객체가 아닌 새 객체를 불러옴
-        // 어쨌든 MC 클래스 내부 메소드에서 전체 멤버리스트를 조회하는 메소드를 작성한다고 해도 Main 클래스에 MC클래스를 불러야하는 상황 발생... 혹은 새 객체가 만들어지거나...
 
         for(int i = 0; i < memberDTO.size(); i++){
             memberDTO.get(i).information();

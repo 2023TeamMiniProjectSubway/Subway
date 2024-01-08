@@ -10,7 +10,7 @@ public class MemberDTO {
     private int point;
 
     public MemberDTO (){
-                                        // 기본생성자
+        // 기본생성자
     }
 
     public MemberDTO (String id, String pwd, String name, String email, String phone){
@@ -71,10 +71,10 @@ public class MemberDTO {
 
     public void information(){
         System.out.println("id : " + this.id + "\n" +
-                            "pwd : " + this.pwd + "\n" +
-                            "name : " + this.name + "\n" +
-                            "email : " + this.email + "\n" +
-                            "phone : " + this.phone + "\n" +
-                            "point : " + this.point);
+                "pwd : " + this.pwd + "\n" +
+                "name : " + this.name + "\n" +
+                "email : " + this.email + "\n" +
+                "phone : " + this.phone + "\n" +
+                "point : " + this.point);
     }
 }
