@@ -89,45 +89,110 @@ public class OrderMain {
     }
 
     public void freshlightMenu(){
-        System.out.println("=====================================");
-        System.out.println("       ▷ 주문할 메뉴를 선택해주세요.      ");
-        System.out.println("----------- 프레쉬 & 라이트 -------------");
-        System.out.println("       ▷ 1. 치킨 슬라이스                  ");
-        System.out.println("       ▷ 2. 치킨 베이컨 아보카도            ");
-        System.out.println("       ▷ 3. 로스트 치킨                   ");
-        System.out.println("       ▷ 4. 로티세리 바비큐 치킨            ");
-        System.out.println("       ▷ 5. 써브웨이 클럽                 ");
-        System.out.println("       ▷ 6. 베지                        ");
-        System.out.println();
-        System.out.println("       ▶ 0. 이전 메뉴로                  ");
-        System.out.println("=====================================");
+        while(true){
+            System.out.println("=====================================");
+            System.out.println("       ▷ 주문할 메뉴를 선택해주세요.      ");
+            System.out.println("----------- 프레쉬 & 라이트 -------------");
+            System.out.println("       ▷ 1. 치킨 슬라이스                  ");
+            System.out.println("       ▷ 2. 치킨 베이컨 아보카도            ");
+            System.out.println("       ▷ 3. 로스트 치킨                   ");
+            System.out.println("       ▷ 4. 로티세리 바비큐 치킨            ");
+            System.out.println("       ▷ 5. 써브웨이 클럽                 ");
+            System.out.println("       ▷ 6. 베지                        ");
+            System.out.println();
+            System.out.println("       ▶ 0. 이전 메뉴로                  ");
+            System.out.println("=====================================");
+
+            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+            choice = classicMenu + 4;               // 5~10
+
+            switch(classicMenu){
+                case 1 : case 2 : case 3 : case 4 : case 5 : case 6 :
+                    oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
+                    if(orderContinue()==true){              //계속 주문할지 선택
+                        continue;
+                    }
+                    else{
+                        System.out.println("주문 끝!");
+                                                            // 결제화면으로 넘어가기
+                        return;
+                    }
+
+                case 0 :
+                    return;
+            }
+        }
     }
 
     public void premiumMenu(){
-        System.out.println("=====================================");
-        System.out.println("       ▷ 주문할 메뉴를 선택해주세요.      ");
-        System.out.println("------------- 프리미엄 ---------------");
-        System.out.println("       ▷ 1. 스파이시 쉬림프               ");
-        System.out.println("       ▷ 2. 쉬림프                      ");
-        System.out.println("       ▷ 3. K-바비큐                    ");
-        System.out.println("       ▷ 4. 풀드 포크 바비큐              ");
-        System.out.println("       ▷ 5. 스테이크 & 치즈              ");
-        System.out.println("       ▷ 6. 스파이시 이탈리안             ");
-        System.out.println("       ▷ 7. 치킨 데리야끼                ");
-        System.out.println();
-        System.out.println("       ▶ 0. 이전 메뉴로                  ");
-        System.out.println("=====================================");
+
+        while(true) {
+            System.out.println("=====================================");
+            System.out.println("       ▷ 주문할 메뉴를 선택해주세요.      ");
+            System.out.println("------------- 프리미엄 ---------------");
+            System.out.println("       ▷ 1. 스파이시 쉬림프               ");
+            System.out.println("       ▷ 2. 쉬림프                      ");
+            System.out.println("       ▷ 3. K-바비큐                    ");
+            System.out.println("       ▷ 4. 풀드 포크 바비큐              ");
+            System.out.println("       ▷ 5. 스테이크 & 치즈              ");
+            System.out.println("       ▷ 6. 스파이시 이탈리안             ");
+            System.out.println("       ▷ 7. 치킨 데리야끼                ");
+            System.out.println();
+            System.out.println("       ▶ 0. 이전 메뉴로                  ");
+            System.out.println("=====================================");
+
+
+            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+            choice = classicMenu + 10;               // 11~17
+
+            switch (classicMenu) {
+                case 1:     case 2:     case 3:     case 4:     case 5:     case 6:     case 7:
+                    oc.showMenuDetail(choice);                  //선택한 숫자를 orderMenu에 넣음
+                    if (orderContinue() == true) {              //계속 주문할지 선택
+                        continue;
+                    } else {
+                        System.out.println("주문 끝!");
+                                                                // 결제화면으로 넘어가기
+                        return;
+                    }
+
+                case 0:
+                    return;
+            }
+        }
     }
 
     public void newMenu(){
-        System.out.println("=====================================");
-        System.out.println("       ▷ 주문할 메뉴를 선택해주세요.      ");
-        System.out.println("--------------- 신제품 ---------------");
-        System.out.println("       ▷  1. 랍스터                   ");
-        System.out.println("     ");
-        System.out.println();
-        System.out.println("       ▶ 0. 이전 메뉴로                  ");
-        System.out.println("=====================================");
+
+        while(true){
+
+            System.out.println("=====================================");
+            System.out.println("       ▷ 주문할 메뉴를 선택해주세요.      ");
+            System.out.println("--------------- 신제품 ---------------");
+            System.out.println("       ▷  1. 랍스터                   ");
+            System.out.println("                                     ");
+            System.out.println("       ▶ 0. 이전 메뉴로                  ");
+            System.out.println("=====================================");
+
+            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+            choice = classicMenu + 17;               // 18
+
+            switch (classicMenu) {
+                case 1:
+                    oc.showMenuDetail(choice);                  //선택한 숫자를 orderMenu에 넣음
+                    if (orderContinue() == true) {              //계속 주문할지 선택
+                        continue;
+                    } else {
+                        System.out.println("주문 끝!");
+                        // 결제화면으로 넘어가기
+                        return;
+                    }
+
+                case 0:
+                    return;
+            }
+
+        }
     }
 
     public boolean orderContinue(){
@@ -141,10 +206,10 @@ public class OrderMain {
         int orderContinue = sc.nextInt();
 
         switch(orderContinue){
-            case 1 :
+            case 1 :                                //계속 주문 -> 원래 메뉴로 이동
                 result =  true;
                 return result;
-            case 2 :
+            case 2 :                                //주문 끝 -> 결제창으로 이동
                 result =  false;
                 return result;
             default:
