@@ -50,18 +50,18 @@ public class OrderController {
     public void showMenuDetail(int choice){
         showdetail :
         while(true){
-            System.out.println("======================================");
-            System.out.println("        ▷ 메뉴 상세 정보          ");
-            System.out.println("   ▷" + menuDTO.get(choice).getMenuname() + "◁   ");
-            System.out.println("   ▷" + menuDTO.get(choice).getPrice() + "원◁   ");
-            System.out.println("   ▷" + menuDTO.get(choice).getDescription() + "◁   ");
+            System.out.println("=================================================================================");
+            System.out.println(" ▷ 메뉴 상세 정보          ");
+            System.out.println(" ▷ " + menuDTO.get(choice).getMenuname() + " ◁   ");
+            System.out.println(" ▷ " + menuDTO.get(choice).getPrice() + "원◁   ");
+            System.out.println(" ▷ " + menuDTO.get(choice).getDescription() + "◁   ");
 
-            System.out.println("======================================");
-            System.out.println("      ▷ 메뉴를 장바구니에 넣으시겠습니까?    ");
-            System.out.println("      ▷ 1. 예                          ");
-            System.out.println("      ▷ 2. 아니오                       ");
-            System.out.println("      ▶ 0. 이전 메뉴로                   ");
-            System.out.println("======================================");
+            System.out.println("=================================================================================");
+            System.out.println("                            ▷ 메뉴를 장바구니에 넣으시겠습니까?                       ");
+            System.out.println("                            ▷ 1. 예                                             ");
+            System.out.println("                            ▷ 2. 아니오                                          ");
+            System.out.println("                            ▶ 0. 이전 메뉴로                                      ");
+            System.out.println("=================================================================================");
 
             int menuCheck = sc.nextInt();
 
@@ -75,7 +75,7 @@ public class OrderController {
                 case 0 :                            // 돌아가기
                     return;
                 default :
-                    System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                    System.out.println("                            ▶ 잘못 입력하셨습니다. 다시 입력해주세요.           ");
                     break;
             }
         }
@@ -113,14 +113,19 @@ public class OrderController {
             sum = (int)orderprice.get(i) + sum;
         }
 
-        System.out.print("현재 고른 메뉴 : ");
+        System.out.print("                            √ 현재 고른 메뉴 : ");
         for(int i = 0; i < ordermenu.size(); i++)
         {
             System.out.print(ordermenu.get(i) + ", ");
         }
         System.out.println();
-        System.out.println("현재 총 가격 : " + sum);
+        System.out.println("                            √ 현재 총 가격 : " + sum          );
         //-----------------------------------------------
 
+    }
+
+    public void clearMenu(){                        //메뉴 초기화
+        ordermenu.clear();
+//        System.out.println(ordermenu);
     }
 }
