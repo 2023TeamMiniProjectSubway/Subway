@@ -1,6 +1,6 @@
 package com.miniProject.subway.member;
 
-import com.miniProject.subway.main.Main;
+import com.miniProject.subway.view.Main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,7 +19,12 @@ public class MemberController{                    // login여부를 바꾸기 �
             System.out.println("=====================================");
             System.out.println("             ▷ ID :                   ");
             String id = sc.nextLine();
+            if(id.equals("")){
+                System.out.println("     ▶ 아이디를 입력해주세요    ");
+                continue;
+            }
 
+            //** 그냥 로그인 들어오면 상관없는데 로그인 실패 후 다시 돌아오면 ID=""이 돼서 입력할수없음
             System.out.println("             ▶ Password :             ");
             String pwd = sc.nextLine();
 
@@ -50,9 +55,11 @@ public class MemberController{                    // login여부를 바꾸기 �
 
             switch(registerSelect){
                 case 1 :                            //회원가입
+                    sc.nextLine();
                     memberRegister();
                     return;
                 case 2 :                            //로그인화면
+                    sc.nextLine();
                     break;
                 case 0 :
                     System.out.println("      ▶ 이전 화면으로 돌아갑니다.     ");
@@ -91,10 +98,6 @@ public class MemberController{                    // login여부를 바꾸기 �
             }
             if(id.equals(""))
             {
-                System.out.println("=====================================");
-                System.out.println("       ▷ 아이디를 입력하지 않았습니다.    ");
-                System.out.println("       ▷ 다시 입력해 주세요.            ");
-                System.out.println("=====================================");
                 continue;
             }
             for(int i = 0; i < memberDTO.size(); i++){                                   //이미 가입된 ID 확인
