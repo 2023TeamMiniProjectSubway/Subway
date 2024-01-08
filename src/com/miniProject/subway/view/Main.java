@@ -8,6 +8,8 @@ public class Main {                             //메뉴화면
 
     public static boolean login = false;
     MemberController mc = new MemberController();
+
+
     public void MainMenu() {
 
         OrderMain order = new OrderMain();
