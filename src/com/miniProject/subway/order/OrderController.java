@@ -17,7 +17,7 @@ public class OrderController {
     ArrayList choosebread = new ArrayList();
 
 
-    Set<String> addToppingSet = new HashSet<>();
+
     ArrayList<Set> minusVegetable = new ArrayList<>();
     ArrayList<Set> addTopping = new ArrayList<>();
 
@@ -92,6 +92,8 @@ public class OrderController {
                     System.out.println(addTopping);
                                                     // 여유가 있으면 음료고르기까지
                     orderMenu(choice);              // 메뉴를 장바구니에 넣기
+                    orderMenuNum ++;
+                    System.out.println("오더 넘버 : " +orderMenuNum);
                     break showdetail;
                 case 2 :                            // 다시 메뉴 디테일 보여주기
                     break;
@@ -106,7 +108,7 @@ public class OrderController {
 
     public void orderMenu(int choice){
 
-        System.out.println("현재 주문하신 메뉴 개수 : " + orderMenuNum + 1);
+        System.out.println("현재 주문하신 메뉴 개수 : " + (orderMenuNum + 1));
 //        setMenuDTO();
 
 //        for(int i = 0; i < menuDTO.size(); i++){
@@ -139,27 +141,30 @@ public class OrderController {
 
         System.out.println("                            √ 현재 고른 메뉴 ");
 
+
+
         for(int i = 0; i < ordermenu.size(); i++)
         {
             System.out.println();
-            System.out.println("                                ◇ " + ordermenu.get(orderMenuNum));
+            System.out.println("                                ◇ " + ordermenu.get(i));
             System.out.println();
-            System.out.println("                                  └ 빵 : " + choosebread.get(orderMenuNum));
-            if(minusVegetable.size() == 0)
+            System.out.println("                                  └ 빵 : " + choosebread.get(i));
+            System.out.println("뺄 야채 : " + minusVegetable.size());
+            if(minusVegetable.get(i).size() == 0)
             {
                 System.out.println("                                  └ 뺄 야채 : " + "없음");
 
             }
             else {
 
-                System.out.println("                                  └ 뺄 야채 : " + minusVegetable.get(orderMenuNum));
+                System.out.println("                                  └ 뺄 야채 : " + minusVegetable.get(i));
             }
-            if(addTopping.size() == 0 )
+            if(addTopping.get(i).size() == 0 )
             {
                 System.out.println("                                  └ 추가할 토핑 : " + "없음");
             }
             else {
-                System.out.println("                                  └ 추가할 토핑 : " + addTopping.get(orderMenuNum));
+                System.out.println("                                  └ 추가할 토핑 : " + addTopping.get(i));
             }
         }
         System.out.println();
@@ -223,8 +228,11 @@ public class OrderController {
 
 //            System.out.println(chooseveg);
             if(chooseveg == 0){
-                minusVegetableSet.clear();
-                return;                                 //뺄 야채 없으니 토핑소스 고르는 메뉴로
+                //* 이부분이 문제!
+                minusVegetableSet.add(" ");
+                minusVegetable.add(orderMenuNum, minusVegetableSet);
+//                minusVegetableSet.add(" ");
+                return;                                 //뺄 야채 없으니 원래 메뉴로
             }
             else if (chooseveg > 0 && chooseveg < 10){
                 int minveg = chooseveg - 1;
@@ -275,7 +283,7 @@ public class OrderController {
     }
 
     public void addTopping(){
-
+        Set<String> addToppingSet = new HashSet<>();
         while(true){
             System.out.println("=================================================================================");
             System.out.println("                            ▷ 추가할 토핑을 선택해 주세요.                             ");
@@ -296,7 +304,9 @@ public class OrderController {
 
             if(toppingSelect == 0)                              //토핑 안 넣으면 원래 메뉴로 돌아가기
             {
-                addToppingSet.clear();
+                //* 이부분이 문제!
+                addToppingSet.add(" ");
+                addTopping.add(orderMenuNum, addToppingSet);
                 return;
             }
             else if(toppingSelect > 0 && toppingSelect <= 7)

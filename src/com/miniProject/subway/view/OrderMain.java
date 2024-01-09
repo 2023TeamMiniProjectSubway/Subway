@@ -230,7 +230,8 @@ public class OrderMain {
 
             switch(orderContinue){
                 case 1 :                                //계속 주문 -> 원래 메뉴로 이동
-                    orderMenuNum ++;
+
+
                     result =  true;
                     return result;
                 case 2 :                                //주문 끝 -> 결제창으로 이동
