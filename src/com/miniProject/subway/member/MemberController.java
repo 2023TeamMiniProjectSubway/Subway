@@ -112,9 +112,9 @@ public class MemberController{                    // login여부를 바꾸기 �
             for(int i = 0; i < memberDTO.size(); i++){                                   //이미 가입된 ID 확인
                 if(memberDTO.get(i).getid().equals(id)){
                     System.out.println("=================================================================================");
-                    System.out.println("                            ▶ 이미 가입된 ID입니다. 다시 입력해주세요. ");
-                    System.out.println("                                      ");
-                    System.out.println("                            ▶ 0. 이전 메뉴로                      ");
+                    System.out.println("                            ▶ 이미 가입된 ID입니다. 다시 입력해주세요.                 ");
+                    System.out.println("                                                                                 ");
+                    System.out.println("                            ▶ 0. 이전 메뉴로                                       ");
                     System.out.println("=================================================================================");
 
                     String alreadyId = sc.nextLine();
@@ -123,7 +123,7 @@ public class MemberController{                    // login여부를 바꾸기 �
                     if(alreadyId.equals("0"))
                     {
                         System.out.println("=================================================================================");
-                        System.out.println("                            ▶ 이전 화면으로 돌아갑니다.     ");
+                        System.out.println("                            ▶ 이전 화면으로 돌아갑니다.                              ");
                         System.out.println("=================================================================================");
                         return;
                     }
@@ -146,13 +146,13 @@ public class MemberController{                    // login여부를 바꾸기 �
         memberDTO.add(new MemberDTO(id, pwd, name, email, phone));
 
         //확인용
-        memberDTO.get(id.indexOf(id)).information();
+//        memberDTO.get(id.indexOf(id)).information();
 
         System.out.println("                            ▷ 회원가입이 완료되었습니다.      ");
         System.out.println("=================================================================================");
 
 
-        memberList();
+        //memberList();
         return;
     }
 
@@ -160,6 +160,7 @@ public class MemberController{                    // login여부를 바꾸기 �
 
         for(int i = 0; i < memberDTO.size(); i++){
             memberDTO.get(i).information();
+            System.out.println("----------------------------------");
         }
     }
 }

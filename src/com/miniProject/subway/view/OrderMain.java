@@ -11,6 +11,7 @@ public class OrderMain {
     OrderController oc = new OrderController();
     MenuDTO menudto = new MenuDTO();
     int choice;
+    public static int orderMenuNum = 0;
 
     public void orderMenu(){
 
@@ -45,6 +46,7 @@ public class OrderMain {
                 case 0 :
                     System.out.println("                            ▶ 이전 메뉴로 돌아갑니다.                         ");
                     oc.clearMenu();                                 //메뉴 초기화
+                    orderMenuNum = 0;
                     sc.nextLine();
                     return;
                 default :
@@ -76,7 +78,7 @@ public class OrderMain {
             switch(classicMenu){
                 case 1 : case 2 : case 3 : case 4 : case 5 :
                     oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-                    if(orderContinue()==true){          //계속 주문할지 선택
+                    if(orderContinue()==true){               //계속 주문할지 선택
                         continue;
                     }
                     else{
@@ -228,6 +230,7 @@ public class OrderMain {
 
             switch(orderContinue){
                 case 1 :                                //계속 주문 -> 원래 메뉴로 이동
+                    orderMenuNum ++;
                     result =  true;
                     return result;
                 case 2 :                                //주문 끝 -> 결제창으로 이동
