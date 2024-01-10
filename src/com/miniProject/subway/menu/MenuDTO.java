@@ -1,56 +1,30 @@
 package com.miniProject.subway.menu;
 
-import java.util.ArrayList;
-
-public class MenuDTO {
+public class MenuDTO {  // TODO :: 메뉴 뼈대 만들기
 
     private String menuname;
     private int price;
     private String description;
 
-    /** 장바구니에 담을 상품명 배열 */
-    private ArrayList ordermenu = new ArrayList();
-
-    /** 장바구니에 담을 상품금액 배열 */
-    private ArrayList orderprice = new ArrayList();
-
-
-    public ArrayList getOrdermenu() {
-        return ordermenu;
+    public MenuDTO() {
     }
 
-    public void setOrdermenu(ArrayList ordermenu) {
-        this.ordermenu = ordermenu;
-    }
-
-    public ArrayList getOrderprice() {
-        return orderprice;
-    }
-
-    public void setOrderprice(ArrayList orderprice) {
-        this.orderprice = orderprice;
-    }
-
-    public MenuDTO(){
-
-    }
-
-    public MenuDTO(String menuname, int price, String description){
-        this.menuname = menuname;
+    public MenuDTO(String name, int price, String description) {
+        this.menuname = name;
         this.price = price;
         this.description = description;
     }
 
-    public String getMenuname() {
-        return this.menuname;
+    public String getName() {
+        return menuname;
     }
 
-    public void setMenuname(String menuname) {
-        this.menuname = menuname;
+    public void setmenuName(String name) {
+        this.menuname = name;
     }
 
     public int getPrice() {
-        return this.price;
+        return price;
     }
 
     public void setPrice(int price) {
@@ -65,7 +39,12 @@ public class MenuDTO {
         this.description = description;
     }
 
-    public String menuInformation(){
-        return "메뉴 이름 : " + this.menuname + "\n 메뉴 가격 : " + this.price + "\n 메뉴 설명 : " + this.description;
+    @Override
+    public String toString() {
+        return "MenuDTO{" +
+                "name='" + menuname + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

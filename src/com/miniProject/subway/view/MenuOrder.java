@@ -1,6 +1,6 @@
 package com.miniProject.subway.view;
 
-import com.miniProject.subway.account.Account;
+import com.miniProject.subway.menu.MenuDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,9 @@ public class MenuOrder {    // TODO :: OrderMain에 들어갈 메소드 모음 �
     List<MenuDTO> premiummenu = new ArrayList<>();      // 프리미엄 메뉴
     List<MenuDTO> newmenu = new ArrayList<>();          // 신메뉴
 
+
     OrderList orderList = new OrderList();
-    OrderMain orderMain = new OrderMain();
+
     Scanner sc = new Scanner(System.in);
 
     public MenuOrder() {
@@ -295,17 +296,26 @@ public class MenuOrder {    // TODO :: OrderMain에 들어갈 메소드 모음 �
     }
 
     public void card() {
+        List<MenuDTO> basket = orderList.getOrderList();
         System.out.println("결제가 완료되었습니다. 감사합니다.");
+        System.out.println();
+        System.out.println("------------------------------------------");
     }
 
     public void cash() {
         for (int i = 0; i <= orderList.totalPrice(); i++) { // TODO :: 왜 금액이 출력이 안되는지, 왜 빠지지 않는지?
             int account = sc.nextInt();
             if (account == orderList.totalPrice()) {
-                System.out.println("결제 완료되었습니다. 감사합니다."); break;
+                System.out.println("결제 완료되었습니다. 감사합니다.");
+                orderList.clearOrderList();
+                break;
+
             } else if (account > orderList.totalPrice()) {
                 System.out.println("결제가 완료되었습니다.");
-                System.out.println("남은 잔돈은 : " + (account - orderList.totalPrice()) + " 입니다.");  break;
+                System.out.println("남은 잔돈 : ▶" + (account - orderList.totalPrice()) + "◀ ");
+                orderList.clearOrderList();
+                break;
+
             } else {
                 System.out.println("잔액이 부족합니다. 다른 결제 방법을 이용해주세요");
                 Account();

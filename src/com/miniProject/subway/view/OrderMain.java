@@ -12,6 +12,8 @@ public class OrderMain {
     private MenuDTO menudto = new MenuDTO();
     int choice;
 
+
+
     public void orderMenu(){
 
         while(true)
@@ -32,7 +34,7 @@ public class OrderMain {
             {
                 case 1 :
                     classicMenu();
-                    continue;
+                    break;
                 case 2 :
                     freshlightMenu();
                     break;
@@ -211,7 +213,6 @@ public class OrderMain {
                 return result;
             case 2 :                                //주문 끝 -> 결제창으로 이동 TODO ::  --> 장바구니로 이동으로 변경
                 result =  false;
-                oc.basket();    // TODO :: 장바구니
                 oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)
                 return result;
             default:

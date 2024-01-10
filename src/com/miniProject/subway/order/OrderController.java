@@ -1,17 +1,20 @@
 package com.miniProject.subway.order;
 
 import com.miniProject.subway.menu.MenuDTO;
+import com.miniProject.subway.view.OrderList;
 import com.miniProject.subway.view.OrderMain;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 
 public class OrderController {
 
 
     ArrayList<MenuDTO> menuDTO= new ArrayList<>();
+    private ArrayList choosebread = new ArrayList();
 
     /** 장바구니에 담을 상품명 배열 */
     private ArrayList ordermenu = new ArrayList();
@@ -19,9 +22,14 @@ public class OrderController {
     /** 장바구니에 담을 상품금액 배열 */
     private ArrayList orderprice = new ArrayList();
 
+    private ArrayList<Set> minusVegetable = new ArrayList<>();
+    private ArrayList<Set> addTopping = new ArrayList<>();
+    public static int orderMenuNum = 0;
 
 
-
+    String [] breadlist = new String[]{"화이트", "하티", "파마산오레가노", "위트", "허니오트", "플랫브레드"};
+    String [] vegetable = new String[]{"양상추", "토마토", "오이", "피망", "양파", "피클", "올리브", "할라피뇨", "아보카도"};
+    String [] topping = new String []{"미트 추가", "에그마요", "베이컨", "치즈 추가", "아보카도", "오믈렛", "페퍼로니"};
 
     Scanner sc = new Scanner(System.in);
 
@@ -53,10 +61,6 @@ public class OrderController {
         menuDTO.add(new MenuDTO("랍스터", 2000,"신선한 랍스터 통살이 고소한 마요네즈와 만나 풍미가 가득, 입안 가득 신선한 랍스터 샌드위치"));
         //18
 
-//        for(int i = 0; i < menuDTO.size(); i++){
-//
-//            System.out.println(menuDTO.get(i).menuInformation());
-//        }
 
     }
 
@@ -65,7 +69,7 @@ public class OrderController {
         while(true){
             System.out.println("======================================");
             System.out.println("        ▷ 메뉴 상세 정보          ");
-            System.out.println("   ▷" + menuDTO.get(choice).getMenuname() + "◁   ");
+            System.out.println("   ▷" + menuDTO.get(choice).getName() + "◁   ");
             System.out.println("   ▷" + menuDTO.get(choice).getPrice() + "원◁   ");
             System.out.println("   ▷" + menuDTO.get(choice).getDescription() + "◁   ");
 
@@ -81,7 +85,16 @@ public class OrderController {
             switch(menuCheck)
             {
                 case 1 :                            // 메뉴를 장바구니에 넣기
-                    orderMenu(choice);
+                    chooseBread();                               // 빵고르기 -> 야채뺴기 -> 토핑고르기
+                    minusVegetable();
+                    System.out.println(minusVegetable);
+                    addTopping();
+                    System.out.println(addTopping);
+
+                                                     // 여유가 있으면 음료고르기까지
+                    orderMenu(choice);              // 메뉴를 장바구니에 넣기
+                    orderMenuNum ++;
+                    System.out.println("오더 넘버 : " +orderMenuNum);
                     break showdetail;
                 case 2 :                            // 다시 메뉴 디테일 보여주기
                     break;
@@ -96,6 +109,8 @@ public class OrderController {
 
     public void orderMenu(int choice){
 
+        System.out.println("현재 주문하신 메뉴 개수 : " + orderMenuNum + 1);
+
 //        setMenuDTO();
 
 //        for(int i = 0; i < menuDTO.size(); i++){
@@ -105,7 +120,7 @@ public class OrderController {
        // System.out.println(choice + "번째 메뉴 가격 : " + menuDTO.get(choice).getPrice() + "원");
 
 
-        ordermenu.add(menuDTO.get(choice).getMenuname());       //선택한 값을 인덱스로 갖는 메뉴이름을 가져와서 ordermenu 에 넣음
+        ordermenu.add(menuDTO.get(choice).getName());       //선택한 값을 인덱스로 갖는 메뉴이름을 가져와서 ordermenu 에 넣음
 //        orderprice.add(menuDTO.get(choice).getPrice());       //이것만 넣으면 IndexOutOfError가 뜸
 
 
@@ -121,19 +136,54 @@ public class OrderController {
 //        System.out.println(orderprice.get(0));      //이렇게하면 잘뜸 -> choice만 넣으면 Index Out Of Bounds Exception발생
 
 
+        System.out.println();
+
         int sum = 0;
         for(int i = 0; i < orderprice.size(); i++)
         {
             sum = (int)orderprice.get(i) + sum;
         }
 
-        System.out.print("현재 고른 메뉴 : ");
+        System.out.println("                            √ 현재 고른 메뉴 ");
+
         for(int i = 0; i < ordermenu.size(); i++)
         {
-            System.out.print(ordermenu.get(i) + ", ");
+            System.out.println();
+            System.out.println("                                ◇ " + ordermenu.get(i));
+            System.out.println();
+            System.out.println("                                  └ 빵 : " + choosebread.get(i));
+            if(minusVegetable.size() == 0)
+            {
+                System.out.println("                                  └ 뺄 야채 : " + "없음");
+
+            }
+            else {
+
+                System.out.println("                                  └ 뺄 야채 : " + minusVegetable.get(i));
+            }
+            if(addTopping.size() == 0 )
+            {
+                System.out.println("                                  └ 추가할 토핑 : " + "없음");
+            }
+            else {
+                System.out.println("                                  └ 추가할 토핑 : " + addTopping.get(i));
+            }
         }
-        System.out.println();
-        System.out.println("현재 총 가격 : " + sum);
+//        System.out.println();
+//        System.out.println();
+//        System.out.println("                            √ 현재 총 가격 : " + sum          );
+
+
+
+
+//        System.out.print("현재 고른 메뉴 : ");
+//        for(int i = 0; i < ordermenu.size(); i++)
+//        {
+//            System.out.println();
+//            System.out.println(ordermenu.get(i) + " ");
+//        }
+//        System.out.println();
+//        System.out.println("현재 총 가격 : " + sum);
         //-----------------------------------------------
 
     }
@@ -149,6 +199,9 @@ public class OrderController {
 
         OrderMain orderMain = new OrderMain();
 
+        System.out.println("======================================");
+        menuBasket();
+        System.out.println("현재 선택하신 메뉴 총 금액 : " + priceBasket());
         System.out.println("======================================");
         System.out.println("      ▷ 결제 도와드리겠습니다.            ");
         System.out.println("      ▷ 1. 현금 결제                    ");
@@ -176,28 +229,42 @@ public class OrderController {
 
 
 
-    public int priceBasket() {
+    public int priceBasket() {  // TODO :: 메소드 자체를 변수로 이용 (선택한 총 금액)
         int totPrc = 0;
 
         for (int i = 0; i < orderprice.size(); i++) {
             totPrc += (int) orderprice.get(i);
         }
-        System.out.println("테스트 전체 가격 : " + totPrc);
         return totPrc;
     }
 
     public void menuBasket(){
-        System.out.println("테스트 메뉴 이름 " + ordermenu.toString());
+        System.out.println("선택하신 메뉴 " + ordermenu.toString());
+
     }
+
+    public int payPoint() { // TODO :: 메소드 자체를 변수로 이용 (총 금액 / 10 == 포인트)
+        int point = 0;
+
+        for (int i = 0; i < orderprice.size(); i++){
+            point += ((int) orderprice.get(i)) / 10;
+
+        }   return point;
+    }
+
+
 
 
 
     public void cardPayment() { // 카드 결제를 위한 메소드
 
         OrderMain orderMain = new OrderMain();
+        OrderList orderList = new OrderList();
+
         System.out.println("============카드 결제 입니다============");
         System.out.println("      [주문 내역을 확인 해주세요]");
         basket();
+        System.out.println("주문 총 금액 : " + priceBasket());
         System.out.println("=====================================");
         System.out.println();
         System.out.println("1. 결제하기                   2. 취소하기");
@@ -207,19 +274,25 @@ public class OrderController {
 
         if(choice == 1) {
             System.out.println("결제가 완료되었습니다.");
+            orderList.orderComplete();
+            System.out.println("주문 총 금액 : ▶ " + priceBasket() + " ◀");
+            System.out.println("적립 포인트 : ▶ " + payPoint() + " ◀");
         } else {
             System.out.println("이전 페이지로 되돌아갑니다.");
             orderMain.orderContinue();
         }
-        // void는 return을 안해도 된다...
+
     }
 
     public void moneyPayment () {   // 현금 결제를 위한 메소드
 
         OrderMain orderMain = new OrderMain();
+        OrderList orderList = new OrderList();
+
         System.out.println("============현금 결제 입니다============");
-        System.out.println("           [주문 내역을 확인 해주세요]");
+        System.out.println("      [주문 내역을 확인해주세요]");
         basket();
+        System.out.println("주문 총 금액 : " + priceBasket());
         System.out.println("=====================================");
         System.out.println();
         System.out.println("1. 결제하기                  2. 취소하기");
@@ -236,11 +309,18 @@ public class OrderController {
                 System.out.println("금액이 부족합니다. 지불하신 금액을 확인해주세요");
                 orderMain.orderContinue();
             } else if (payCash == priceBasket()) {
-                System.out.println("계산이 완료되었습니다. 감사합니다.");
+                System.out.println(payCash + "원이" + "계산되었습니다.");
+                System.out.println("적립 포인트  : ▶ " + payPoint() + " ◀");
+                orderList.orderComplete();
             } else {
                 System.out.println("=====================================");
-                System.out.println("남은 잔돈은 : " + ( payCash - priceBasket() ) + " 입니다.");
+                System.out.println("주문 총 금액 : ▶ " + (priceBasket()) + " ◀");
+                System.out.println("남은 잔돈 : ▶ " + ( payCash - priceBasket() ) + " ◀");
+                System.out.println("적립 포인트  : ▶ " + payPoint() + " ◀");
+                System.out.println("-------------------------------------");
                 System.out.println("주문이 완료되었습니다. 감사합니다 ^_^ ");
+                System.out.println("-------------------------------------");
+                orderList.orderComplete();
                 System.out.println("=====================================");
 
             }
@@ -251,12 +331,189 @@ public class OrderController {
 
     }
 
-    public void addPonint () {  // 포인트 적립을 위한 메소드
+    public void chooseBread(){                      //빵 선택
+        System.out.println("=================================================================================");
+        System.out.println("                            ▷ 빵을 선택해 주세요.                                   ");
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("                            ▷ 1. 화이트                                           ");
+        System.out.println("                            ▷ 2. 하티                                            ");
+        System.out.println("                            ▷ 3. 파마산오레가노                                    ");
+        System.out.println("                            ▷ 4. 위트                                            ");
+        System.out.println("                            ▷ 5. 허니오트                                         ");
+        System.out.println("                            ▷ 6. 플랫브레드                                       ");
+        System.out.println("=================================================================================");
+
+
+        int breadnum = sc.nextInt();
+
+        switch(breadnum)
+        {
+            case 1 : case 2 : case 3: case 4 : case 5 : case 6 :
+            choosebread.add(breadlist[breadnum - 1]);
+//            System.out.println("고른 빵은 : " + choosebread + "입니다.");
+            return;
+            default :
+                System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
+                break;
+        }
 
     }
 
-    public void usePoint() {    // 포인트 사용을 위한 메소드
+    public void minusVegetable(){
 
+        Set<String> minusVegetableSet = new HashSet();
+        while(true)
+        {
+            System.out.println("=================================================================================");
+            System.out.println("                            ▷ 뺄 야채를 선택해 주세요.                             ");
+            System.out.println("---------------------------------------------------------------------------------");
+            System.out.println("                            ▷ 1. 양상추                                            ");
+            System.out.println("                            ▷ 2. 토마토                                            ");
+            System.out.println("                            ▷ 3. 오이                                             ");
+            System.out.println("                            ▷ 4. 피망                                             ");
+            System.out.println("                            ▷ 5. 양파                                             ");
+            System.out.println("                            ▷ 6. 피클                                             ");
+            System.out.println("                            ▷ 7. 올리브                                           ");
+            System.out.println("                            ▷ 8. 할라피뇨                                          ");
+            System.out.println("                            ▷ 9. 아보카도                                          ");
+            System.out.println("                            ▷ 10. 다 빼주세요                                     ");
+            System.out.println("                                                                                  ");
+            System.out.println("                            ▶ 0. 다 넣어주세요                                       ");
+            System.out.println("=================================================================================");
+
+            int chooseveg = sc.nextInt();
+
+//            System.out.println(chooseveg);
+            if(chooseveg == 0){
+                //* 이부분이 문제!
+                minusVegetableSet.add(" ");
+                minusVegetable.add(orderMenuNum, minusVegetableSet);
+//                minusVegetableSet.add(" ");
+                return;                                 //뺄 야채 없으니 원래 메뉴로
+            }
+            else if (chooseveg > 0 && chooseveg < 10){
+                int minveg = chooseveg - 1;
+                minusVegetableSet.add(vegetable[minveg]);
+
+                System.out.println("현재 뺄 야채 : " + minusVegetableSet);
+
+                System.out.println("=================================================================================");
+                System.out.println("                            ▷ 계속 빼시겠습니까?                                  ");
+                System.out.println("                            ▷ 1. 예                                            ");
+                System.out.println("                            ▷ 2. 아니오                                        ");
+                System.out.println("=================================================================================");
+
+
+                int continuuVeg = sc.nextInt();
+
+                switch (continuuVeg){
+                    case 1 :                        //야채 추가로 빼
+                        break;
+                    case 2 :                        //토핑소스 고르는 메뉴로
+                        minusVegetable.add(minusVegetableSet);              //ArrayList(샌드위치당 야채)에 야채 Set 넣기
+                        System.out.println(minusVegetable); // TODO :: 이전 장바구니에서 뺀 야채들도 중복되서 보여지기 때문에. 현재 입력한 야채만 보여지도록 하였음.
+                        return;
+                    default :
+                        System.out.println("                            ▶ 잘못 입력하셨습니다. 다시 입력해주세요.");
+                        break;
+                }
+
+            }
+            else if(chooseveg == 10){
+//                System.out.println("선택번호 = 10");
+
+                for(int i = 0; i < vegetable.length; i++)
+                {
+                    minusVegetableSet.add(vegetable[i]);
+                }
+
+
+                System.out.println("현재 뺄 야채 : " + minusVegetableSet);
+                minusVegetable.add(minusVegetableSet);
+//                System.out.println(ordermenu + "의 뺄 야채 : " + minusVegetableset);
+                return;
+            }
+            else{
+                System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
+                continue;
+            }
+        }
+    }
+
+    public void addTopping(){
+        Set<String> addToppingSet = new HashSet<>();
+        while(true){
+            System.out.println("=================================================================================");
+            System.out.println("                            ▷ 추가할 토핑을 선택해 주세요.                             ");
+            System.out.println("---------------------------------------------------------------------------------");
+            System.out.println("                            ▷ 1. 미트 추가                                         ");
+            System.out.println("                            ▷ 2. 에그마요                                          ");
+            System.out.println("                            ▷ 3. 베이컨                                           ");
+            System.out.println("                            ▷ 4. 치즈 추가                                         ");
+            System.out.println("                            ▷ 5. 아보카도                                          ");
+            System.out.println("                            ▷ 6. 오믈렛                                            ");
+            System.out.println("                            ▷ 7. 페퍼로니                                          ");
+            System.out.println("                            ▷ 8. 전부 다 넣어주세요                                  ");
+            System.out.println("                                                                                  ");
+            System.out.println("                            ▶ 0. 토핑 안 넣을래요                                    ");
+            System.out.println("=================================================================================");
+
+            int toppingSelect = sc.nextInt();
+
+            if(toppingSelect == 0)                              //토핑 안 넣으면 원래 메뉴로 돌아가기
+            {
+                //* 이부분이 문제!
+                addToppingSet.add(" ");
+                addTopping.add(orderMenuNum, addToppingSet);
+                return;
+            }
+            else if(toppingSelect > 0 && toppingSelect <= 7)
+            {
+                int topSelNum = toppingSelect - 1;
+
+                addToppingSet.add(topping[topSelNum]);
+
+                System.out.println("현재 추가한 토핑 : " + addToppingSet);
+
+                System.out.println("=================================================================================");
+                System.out.println("                            ▷ 계속 추가하시겠습니까?                                ");
+                System.out.println("                            ▷ 1. 예                                              ");
+                System.out.println("                            ▷ 2. 아니오                                           ");
+                System.out.println("=================================================================================");
+
+                int continueAddTop = sc.nextInt();
+
+                switch(continueAddTop){
+                    case 1 :                            //계속 추가
+                        break;
+                    case 2 :                            //주문 끝 -> 원래 있던 자리로
+                        System.out.println("주문 끝났대요~!");
+                        addTopping.add(addToppingSet);
+                        System.out.println((orderMenuNum + 1) + "번째 토핑 목록 : " + addTopping.get(orderMenuNum));
+                        return;
+                    default :
+                        System.out.println("                            ▶ 번호를 잘못 입력하셨습니다. 다시 입력해주세요.     ");
+                        break;
+                }
+            }
+            else if(toppingSelect == 8){
+                for(int i = 0; i < topping.length; i++)
+                {
+                    addToppingSet.add(topping[i]);
+                }
+
+                System.out.println("현재 추가한 토핑 : " + addToppingSet);
+                addTopping.add(addToppingSet);
+                return;
+            }
+        }
+
+    }
+
+
+    public void clearMenu(){                        //메뉴 초기화
+        ordermenu.clear();
+//        System.out.println(ordermenu);
     }
 
 }
