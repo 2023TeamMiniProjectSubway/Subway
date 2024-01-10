@@ -3,20 +3,22 @@ package com.miniProject.subway.view;
 import com.miniProject.subway.menu.MenuDTO;
 import com.miniProject.subway.order.OrderController;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class OrderMain {
 
     Scanner sc = new Scanner(System.in);
-    OrderController oc = new OrderController();
-    MenuDTO menudto = new MenuDTO();
+    private OrderController oc = new OrderController();
+    private MenuDTO menudto = new MenuDTO();
     int choice;
+    boolean orderfinish = false;            //주문끝난지 확인
     public static int orderMenuNum = 0;
 
     public void orderMenu(){
 
-        while(true)
-        {
+        while(orderfinish == false){
+        while(true) {
             System.out.println("=================================================================================");
             System.out.println("                            ▷ 주문할 메뉴를 선택해주세요.                            ");
             System.out.println("                            ▷ 1. 클래식                                           ");
@@ -27,32 +29,45 @@ public class OrderMain {
             System.out.println("                            ▶ 0. 이전 메뉴로                                      ");
             System.out.println("=================================================================================");
 
-            int ordermenu = sc.nextInt();
+            try {
+                int ordermenu = sc.nextInt();
 
-            switch(ordermenu)
-            {
-                case 1 :
-                    classicMenu();
-                    continue;
-                case 2 :
-                    freshlightMenu();
-                    break;
-                case 3 :
-                    premiumMenu();
-                    break;
-                case 4 :
-                    newMenu();
-                    break;
-                case 0 :
-                    System.out.println("                            ▶ 이전 메뉴로 돌아갑니다.                         ");
-                    oc.clearMenu();                                 //메뉴 초기화
-                    orderMenuNum = 0;
-                    sc.nextLine();
-                    return;
-                default :
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                     ");
-                    break;
+                switch (ordermenu) {
+                    case 1:
+                        classicMenu();
+                        if (orderfinish == true) {
+                            orderfinish = false;
+                            return;
+                        }
+                        continue;
+                    case 2:
+                        freshlightMenu();
+                        break;
+                    case 3:
+                        premiumMenu();
+                        break;
+                    case 4:
+                        newMenu();
+                        break;
+                    case 0:
+                        System.out.println("                            ▶ 이전 메뉴로 돌아갑니다.                         ");
+                        oc.clearMenu();                                 //메뉴 초기화
+                        orderMenuNum = 0;
+                        sc.nextLine();
+                        return;
+                    default:
+                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                     ");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.                  ");
+                sc.nextLine();
             }
+         }
+        }
+        if(orderfinish ==  true){
+            System.out.println("주문 끝났나요? : " + orderfinish);
+            return;
         }
 
     }
@@ -72,34 +87,38 @@ public class OrderMain {
             System.out.println("                            ▶ 0. 이전 메뉴로                                       ");
             System.out.println("=================================================================================");
 
-            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
-            choice = classicMenu - 1;
+            try {
+                int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+                choice = classicMenu - 1;
 
-            switch(classicMenu){
-                case 1 : case 2 : case 3 : case 4 : case 5 :
-                    oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-                    if(orderContinue()==true){               //계속 주문할지 선택
-                        continue;
-                    }
-                    else{
-                        System.out.println("주문 끝!");
+                switch (classicMenu) {
+                    case 1:  case 2: case 3: case 4: case 5:
+                        oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
+                        if (orderContinue() == true) {               //계속 주문할지 선택
+                            continue;
+                        } else {
+                            System.out.println("주문 끝!");
 
+                            return;
+                        }
+
+                    case 0:
                         return;
-                    }
-
-                case 0 :
-                    return;
-                default :
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                     ");
-                    break;
+                    default:
+                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                     ");
+                        break;
+                }
+            }catch (InputMismatchException e)
+            {
+                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.");
+                sc.nextLine();
             }
-
         }
 
     }
 
     public void freshlightMenu(){
-        while(true){
+        while(true) {
             System.out.println("=================================================================================");
             System.out.println("                            ▷ 주문할 메뉴를 선택해주세요.                           ");
             System.out.println("-------------------------------- 프레쉬 & 라이트 ---------------------------------");
@@ -113,27 +132,32 @@ public class OrderMain {
             System.out.println("                            ▶ 0. 이전 메뉴로                                    ");
             System.out.println("=================================================================================");
 
-            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
-            choice = classicMenu + 4;               // 5~10
+            try {
+                int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+                choice = classicMenu + 4;               // 5~10
 
-            switch(classicMenu){
-                case 1 : case 2 : case 3 : case 4 : case 5 : case 6 :
-                    oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-                    if(orderContinue()==true){              //계속 주문할지 선택
-                        continue;
-                    }
-                    else{
-                        System.out.println("주문 끝!");
-                                                            // 결제화면으로 넘어가기
+                switch (classicMenu) {
+                    case 1: case 2: case 3: case 4: case 5:  case 6:
+                        oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
+                        if (orderContinue() == true) {              //계속 주문할지 선택
+                            continue;
+                        } else {
+                            System.out.println("주문 끝!");
+                            // 결제화면으로 넘어가기
+                            return;
+                        }
+
+                    case 0:
                         return;
-                    }
+                    default:
+                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                     ");
+                        break;
 
-                case 0 :
-                    return;
-                default:
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                     ");
-                    break;
-
+                }
+            }catch (InputMismatchException e)
+            {
+                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.                 ");
+                sc.nextLine();
             }
         }
     }
@@ -156,6 +180,7 @@ public class OrderMain {
             System.out.println("=================================================================================");
 
 
+            try{
             int classicMenu = sc.nextInt();         //주문할 메뉴 선택
             choice = classicMenu + 10;               // 11~17
 
@@ -173,10 +198,16 @@ public class OrderMain {
                 case 0:
                     return;
                 default:
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다.");
+                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                 ");
                     break;
+                }
+            }catch (InputMismatchException e)
+            {
+                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.            ");
+                sc.nextLine();
             }
         }
+
     }
 
     public void newMenu(){
@@ -191,57 +222,66 @@ public class OrderMain {
             System.out.println("                            ▶ 0. 이전 메뉴로                                       ");
             System.out.println("=================================================================================");
 
-            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
-            choice = classicMenu + 17;               // 18
+            try {
+                int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+                choice = classicMenu + 17;               // 18
 
-            switch (classicMenu) {
-                case 1:
-                    oc.showMenuDetail(choice);                  //선택한 숫자를 orderMenu에 넣음
-                    if (orderContinue() == true) {              //계속 주문할지 선택
-                        continue;
-                    } else {
-                        System.out.println("주문 끝!");
-                        // 결제화면으로 넘어가기
+                switch (classicMenu) {
+                    case 1:
+                        oc.showMenuDetail(choice);                  //선택한 숫자를 orderMenu에 넣음
+                        if (orderContinue() == true) {              //계속 주문할지 선택
+                            continue;
+                        } else {
+                            System.out.println("주문 끝!");
+                            // 결제화면으로 넘어가기
+                            return;
+                        }
+
+                    case 0:
                         return;
-                    }
-
-                case 0:
-                    return;
-                default:
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다.");
-                    break;
+                    default:
+                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다.                 ");
+                        break;
+                }
+            }catch(InputMismatchException e)
+            {
+                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.               ");
+                sc.nextLine();
             }
-
         }
     }
 
     public boolean orderContinue(){
         boolean result = true;
-        while(true)
-        {
+        while(true) {
             System.out.println("=================================================================================");
             System.out.println("                            ▷ 계속 주문하시겠습니까?                                ");
             System.out.println("                            ▷ 1. 예                                             ");
             System.out.println("                            ▷ 2. 아니오(장바구니로 이동합니다.)                      ");
             System.out.println("=================================================================================");
 
+            try {
+                int orderContinue = sc.nextInt();
 
-            int orderContinue = sc.nextInt();
-
-            switch(orderContinue){
-                case 1 :                                //계속 주문 -> 원래 메뉴로 이동
-
-
-                    result =  true;
-                    return result;
-                case 2 :                                //주문 끝 -> 결제창으로 이동
-                    result =  false;
-                    return result;
-                default:
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
-                    continue;
+                switch (orderContinue) {
+                    case 1:                                //계속 주문 -> 원래 메뉴로 이동
+                        result = true;
+                        return result;
+                    case 2:                                //주문 끝 -> 결제창으로 이동
+                        result = false;
+                        oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)
+                        orderfinish = true;
+                        System.out.println("계속 주문 안해서 주문 끝 (orderContinue): " + orderfinish);
+                        return result;
+                    default:
+                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
+                        continue;
+                }
+            }catch (InputMismatchException e)
+            {
+                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.               ");
+                sc.nextLine();
             }
         }
-
     }
 }

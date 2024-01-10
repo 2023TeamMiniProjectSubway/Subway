@@ -3,6 +3,7 @@ package com.miniProject.subway.member;
 import com.miniProject.subway.view.Main;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MemberController{                    // login여부를 바꾸기 위해 Main클래스를 상속함
@@ -44,7 +45,7 @@ public class MemberController{                    // login여부를 바꾸기 �
             }
 
             incorrect :
-            while(true){
+            while(true) {
                 System.out.println("=================================================================================");
                 System.out.println("                            ▶ 회원정보가 일치하지 않습니다.                          ");
                 System.out.println("                            ▷ 회원가입하시겠습니까?                                 ");
@@ -54,22 +55,28 @@ public class MemberController{                    // login여부를 바꾸기 �
                 System.out.println("                            ▶ 0. 이전 메뉴로                                       ");
                 System.out.println("=================================================================================");
 
-                int registerSelect = sc.nextInt();
+                try {
+                    int registerSelect = sc.nextInt();
 
-                switch(registerSelect){
-                    case 1 :                            //회원가입
-                        sc.nextLine();
-                        memberRegister();
-                        return;
-                    case 2 :                            //로그인화면
-                        sc.nextLine();
-                        break incorrect;
-                    case 0 :
-                        System.out.println("                            ▶ 이전 화면으로 돌아갑니다.     ");
-                        return;
-                    default:
-                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요. ");
-                        continue;
+                    switch (registerSelect) {
+                        case 1:                            //회원가입
+                            sc.nextLine();
+                            memberRegister();
+                            return;
+                        case 2:                            //로그인화면
+                            sc.nextLine();
+                            break incorrect;
+                        case 0:
+                            System.out.println("                            ▶ 이전 화면으로 돌아갑니다.     ");
+                            return;
+                        default:
+                            System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요. ");
+                            continue;
+                    }
+                }catch(InputMismatchException e)
+                {
+                    System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.             ");
+                    sc.nextLine();
                 }
             }
 
