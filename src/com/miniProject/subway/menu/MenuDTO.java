@@ -1,30 +1,31 @@
 package com.miniProject.subway.menu;
 
-public class MenuDTO {  // TODO :: 메뉴 뼈대 만들기
+public class MenuDTO {
 
     private String menuname;
     private int price;
     private String description;
 
-    public MenuDTO() {
+    public MenuDTO(){
+
     }
 
-    public MenuDTO(String name, int price, String description) {
-        this.menuname = name;
+    public MenuDTO(String menuname, int price, String description){
+        this.menuname = menuname;
         this.price = price;
         this.description = description;
     }
 
-    public String getName() {
-        return menuname;
+    public String getMenuname() {
+        return this.menuname;
     }
 
-    public void setmenuName(String name) {
-        this.menuname = name;
+    public void setMenuname(String menuname) {
+        this.menuname = menuname;
     }
 
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(int price) {
@@ -39,12 +40,7 @@ public class MenuDTO {  // TODO :: 메뉴 뼈대 만들기
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "MenuDTO{" +
-                "name='" + menuname + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
+    public String menuInformation(){
+        return "메뉴 이름 : " + this.menuname + "\n 메뉴 가격 : " + this.price + "\n 메뉴 설명 : " + this.description;
     }
 }
