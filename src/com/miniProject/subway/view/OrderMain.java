@@ -292,7 +292,7 @@ public class OrderMain {
                     case 2:
                         result = false;
 
-                        oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)   // 여기에 clear없ㄱ어야함
+                        oc.lastBasket();
                         if(paycancel == true)
                         {
                             orderfinish = false;
