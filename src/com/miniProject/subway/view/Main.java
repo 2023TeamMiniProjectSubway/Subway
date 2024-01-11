@@ -1,6 +1,7 @@
 package com.miniProject.subway.view;
 
 import com.miniProject.subway.member.MemberController;
+import com.miniProject.subway.run.Application;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public class Main {                             //메뉴화면
         Scanner sc = new Scanner(System.in);
         int mainMenu = 0;
 
-        System.out.println("                       ☆★☆★☆★서브웨이에 어서오세요☆★☆★☆★                            ");
+        System.out.println("                    ☆★☆★☆★ 🥙 서브웨이에 어서오세요 🥙 ☆★☆★☆★                            ");
 
         //메인 메뉴
         main :
@@ -51,6 +52,7 @@ public class Main {                             //메뉴화면
 //                        System.out.println(mainMenu);
                         sc.nextLine();
                         System.out.println("                            ▶ 메뉴를 종료합니다.                         ");
+
                         break main;                                 //메뉴 종료
                     case 2:
                         System.out.println("                            ▷ 회원 목록을 조회합니다.                    ");
@@ -63,13 +65,13 @@ public class Main {                             //메뉴화면
                     default:
                         sc.nextLine();
                         System.out.println(mainMenu);
-                        System.out.println("                            ▷ 번호를 잘못 입력하였습니다. 다시 입력해주세요.     ");
+                        System.out.println("                            ▷ 😥️ 번호를 잘못 입력하였습니다. 다시 입력해주세요.     ");
                         // 왜자꾸 3?이 넘어오는가
                         break;
                 }
             }catch(InputMismatchException e)
             {
-                System.out.println("                            ▷ 잘못 입력하였습니다. 다시 입력해주세요.");
+                System.out.println("                            ▷ 😥️ 잘못 입력하였습니다. 다시 입력해주세요.");
                 sc.nextLine();
 
             }
@@ -86,7 +88,7 @@ public class Main {                             //메뉴화면
 
         while(true) {
             System.out.println("=================================================================================");
-            System.out.println("                            ▷ 주문은 로그인 후 이용 가능합니다                        ");
+            System.out.println("                            ▷ 👉 주문은 로그인 후 이용 가능합니다                        ");
             System.out.println("                            ▷  1. 로그인                                          ");
             System.out.println("                            ▷  2. 회원가입                                        ");
             System.out.println("                                                                                ");
@@ -107,13 +109,13 @@ public class Main {                             //메뉴화면
                         System.out.println("                            ▶ 메인화면으로 돌아갑니다.                    ");
                         return;
                     default:
-                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.  ");
+                        System.out.println("                            ▶ 😥️ ️번호를 잘못 입력하였습니다. 다시 입력해주세요.  ");
                         break;
                 }
 
             }catch(InputMismatchException e)
             {
-                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.          ");
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.          ");
                 sc.nextLine();
             }
         }
