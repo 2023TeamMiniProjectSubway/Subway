@@ -250,7 +250,7 @@ public class OrderController {
 
 
                 }
-            } catch (InputMismatchException e) {
+             catch (InputMismatchException e) {
                 System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.                 ");
                 sc.nextLine();
             }
