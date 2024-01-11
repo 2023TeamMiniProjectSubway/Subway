@@ -242,29 +242,35 @@ public class OrderController {
     }
 
     public void backMenu(){
-        System.out.println();
-        System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
-        System.out.println("                            ▷ 1. 장바구니");
-        System.out.println("");
-        System.out.println("                            ▷ 0. 초기화면");
+        while(true) {
+            sc.nextLine();
+            System.out.println();
+            System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
+            System.out.println("                            ▷ 1. 장바구니");
+            System.out.println("");
+            System.out.println("                            ▷ 0. 초기화면");
 
-        System.out.println("=================================================================================");
+            System.out.println("=================================================================================");
 
 
-        int backmenu = sc.nextInt();
-        switch (backmenu){
-            case 1:
+            int backmenu = sc.nextInt();
+            switch (backmenu) {
+                case 1:
 //                basket();
 //                priceBasket();
-                lastBasket();
+                    lastBasket();
 
 
-            case 0:
-                clearMenu();
-                orderMenuNum = 0;
-                Main.login = false;
-                Main main = new Main();
-                main.MainMenu();
+                case 0:
+                    clearMenu();
+                    orderMenuNum = 0;
+                    Main.login = false;
+                    Main main = new Main();
+                    main.MainMenu();
+                default:
+                    System.out.println("                            ▷ 잘못입력하셨습니다. 다시 입력해주세요");
+                    continue;
+            }
 
         }
 
@@ -319,7 +325,7 @@ public class OrderController {
                 System.out.println("                            ▶" + priceBasket() );
                 System.out.println("                            ▶ " + payPoint() );
                 return;
-            } else {
+            } else if(choice == 2 ) {
                 System.out.println("                            ▶ 이전 페이지로 되돌아갑니다.");
 
 //                return;
@@ -328,6 +334,8 @@ public class OrderController {
 
 //                continue;
 
+            } else {
+                System.out.println("                            ▷ 잘못입력하셨습니다. 다시 입력해주세요");
             }
         }
     }
@@ -397,11 +405,14 @@ public class OrderController {
                     return;
 
                 }
-            } else {
+            } else if (cash == 2) {
                 System.out.println("                            ▷ 이전 페이지로 되돌아갑니다.");
                     golastbasket();
 //                 orderMain.orderContinue();
 
+            } else {
+                System.out.println("                            ▷ 잘못입력하셨습니다. 다시 입력해주세요.");
+                continue;
             }
         }
     }
