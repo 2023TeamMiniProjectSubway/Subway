@@ -269,9 +269,11 @@ public class OrderMain {
                         return result;
                     case 2:                                //주문 끝 -> 결제창으로 이동
                         result = false;
-                        oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)
+
+                        oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)   // 여기에 clear없ㄱ어야함
                         orderfinish = true;
-                        System.out.println("계속 주문 안해서 주문 끝 (orderContinue): " + orderfinish);
+//                        System.out.println("계속 주문 안해서 주문 끝 (orderContinue): " + orderfinish);
+
                         return result;
                     default:
                         System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
