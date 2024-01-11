@@ -19,7 +19,7 @@ public class OrderMain {
 
     public void orderMenu(){
 
-        Main callmain = new Main();
+//        Main callmain = new Main();
 
         while(orderfinish == false){
         while(true) {

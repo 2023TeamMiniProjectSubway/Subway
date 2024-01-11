@@ -26,7 +26,6 @@ public class Main {                             //메뉴화면
             System.out.println("                              ▷  1. 주문하기                                      ");
             System.out.println("                                                                                 ");
             System.out.println("                              ▷  0. 종료                                          ");
-            System.out.println("                              ▶  3. 로그인없이 주문하기                             ");
             System.out.println("=================================================================================");
 
             try {
@@ -57,7 +56,7 @@ public class Main {                             //메뉴화면
                         System.out.println("                            ▷ 회원 목록을 조회합니다.                    ");
                         callMemberList();
                         break;
-                    case 3:
+                    case 9:
                         sc.nextLine();
                         order.orderMenu();
                         break;

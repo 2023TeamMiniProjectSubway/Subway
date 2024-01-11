@@ -3,7 +3,7 @@ package com.miniProject.subway.order;
 import com.miniProject.subway.menu.MenuDTO;
 import com.miniProject.subway.view.OrderMain;
 import com.miniProject.subway.view.OrderList;
-
+import com.miniProject.subway.view.Main;
 import java.util.*;
 
 import static com.miniProject.subway.view.OrderMain.*;
@@ -195,42 +195,87 @@ public class OrderController {
 
 
     public void lastBasket() {
+        while(true) {
+            try {
+                sc.nextLine();
+                System.out.println("======================================");
+                menuBasket();
+                System.out.println("현재 선택하신 메뉴 총 금액 : " + priceBasket());
+                System.out.println("======================================");
+                System.out.println("      ▷ 결제 도와드리겠습니다.            ");
+                System.out.println("      ▷ 1. 현금 결제                    ");
+                System.out.println("      ▷ 2. 카드 결제                     ");
+                System.out.println("      ▶ 0. 이전 메뉴로                   ");
+                System.out.println("======================================");
 
-        System.out.println("======================================");
-        menuBasket();
-        System.out.println("현재 선택하신 메뉴 총 금액 : " + priceBasket());
-        System.out.println("======================================");
-        System.out.println("      ▷ 결제 도와드리겠습니다.            ");
-        System.out.println("      ▷ 1. 현금 결제                    ");
-        System.out.println("      ▷ 2. 카드 결제                     ");
-        System.out.println("      ▶ 0. 이전 메뉴로                   ");
-        System.out.println("======================================");
 
-        OrderMain orderMain = new OrderMain();      // TODO :: 제발 되라
+                int pick = sc.nextInt();
+                System.out.println(pick);
 
+                switch (pick) {
+                    case 1:
+                        moneyPayment();
+                        break;
+                    case 2:
+                        cardPayment();
+                        break;
+                    case 0:
+                        backMenu();
+//                OrderMain orderMain = new OrderMain();      // TODO :: 제발 되라
+//                orderMain.orderContinue();
 
-        int pick = sc.nextInt();
-        switch (pick) {
-            case 1:
-                moneyPayment();
-                break;
-            case 2:
-                cardPayment();
-                break;
-            case 0:
-                paycancel = true;
+//                paycancel = true;
 
-            orderMain.orderContinue();
-
-//                 orderMain.orderContinue();   //맞는지확
 //                 return;
 
-            default:
-                System.out.println("선택할 수 없습니다. 다시 선택해주세요.");
+                    default:
+                        System.out.println(pick);
+                        System.out.println("선택할 수 없습니다. 다시 선택해주세요.");
+
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("잘못 선택하셨습니다. 다시 선택해주세요.");
+                continue;                           //continue를 하기위한 while문
+            }
+        }
+
+    }
+
+    public void backMenu(){
+        System.out.println();
+        System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
+        System.out.println("                            ▷ 1. 장바구니");
+        System.out.println("                            ▷ 2. 추가 주문하기");
+        System.out.println("                            ▷ 0. 초기화면");
+
+        System.out.println("=================================================================================");
+
+
+        int backmenu = sc.nextInt();
+        switch (backmenu){
+            case 1:
+//                basket();
+//                priceBasket();
+                lastBasket();
+            case 2:
+                System.out.println("현재 주문 메뉴 갯수 : " + orderMenuNum);
+
+//                orderMenuNum++;
+                OrderMain orderMain = new OrderMain();
+                orderMain.orderMenu();
+
+            case 0:
+                clearMenu();
+                orderMenuNum = 0;
+                Main.login = false;
+                Main main = new Main();
+                main.MainMenu();
 
         }
 
     }
+
+
     public int priceBasket() {  // TODO :: 메소드 자체를 변수로 이용 (선택한 총 금액)
         int totPrc = 0;
 

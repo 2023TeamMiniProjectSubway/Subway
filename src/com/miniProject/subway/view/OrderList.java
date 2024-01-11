@@ -1,7 +1,8 @@
 package com.miniProject.subway.view;
 
 import com.miniProject.subway.menu.MenuDTO;
-
+import com.miniProject.subway.order.OrderController;
+import com.miniProject.subway.view.Main;
 import com.miniProject.subway.view.OrderMain;
 
 import java.util.ArrayList;
@@ -59,8 +60,17 @@ public class OrderList {    // TODO :: 메뉴 어레이리스트
         int ordernum = getOrderNum();
 
         OrderMain.orderMenuNum = 0;
+
 //        clearOrderList();   // TODO :: 장바구니 초기화
 //        setOrderNum(ordernum);  //
+
+        OrderController oc = new OrderController();
+
+        oc.clearMenu();
+        oc.orderMenuNum = 0;
+        Main.login = false;
+        Main main = new Main();
+        main.MainMenu();
     }
 
 
