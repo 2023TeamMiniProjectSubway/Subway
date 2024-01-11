@@ -121,12 +121,11 @@ public class Main {                             //메뉴화면
         }
     }
 
+
     public void callMemberList(){
 
         mc.memberList();
-//        for(int i = 0; i < memberDTO.size(); i++){
-//            memberDTO.get(i).information();
-//        }
+
     }
 
 
