@@ -78,7 +78,7 @@ public class OrderMain {
          }
         }
         if(orderfinish ==  true){
-            System.out.println("주문 끝났나요? : " + orderfinish);
+//            System.out.println("주문 끝났나요? : " + orderfinish);
             return;
         }
 
@@ -106,8 +106,8 @@ public class OrderMain {
                 switch (classicMenu) {
                     case 1:  case 2: case 3: case 4: case 5:
                         oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-                        System.out.println("이전메뉴로 돌아왔어"); // 응 돌아왔어
-                        System.out.println("주문 끝낼거야?" + orderfinish);
+//                        System.out.println("이전메뉴로 돌아왔어"); // 응 돌아왔어
+//                        System.out.println("주문 끝낼거야?" + orderfinish);
                         if(showMenuAgain == true)
                         {
                             continue;
@@ -117,7 +117,7 @@ public class OrderMain {
 
                                 continue;
                             } else {
-                                System.out.println("주문 끝!");
+//                                System.out.println("주문 끝!");
                                 return;
                             }
 
@@ -162,7 +162,7 @@ public class OrderMain {
                         if (orderContinue() == true) {              //계속 주문할지 선택
                             continue;
                         } else {
-                            System.out.println("주문 끝!");
+//                            System.out.println("주문 끝!");
                             // 결제화면으로 넘어가기
                             return;
                         }
