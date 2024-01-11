@@ -49,6 +49,8 @@ public class OrderList {    // TODO :: 메뉴 어레이리스트
         this.orderNum = orderNum;
     }
 
+
+    /** 주문 완료 메소드 */
     public void orderComplete(){
 
         int i = 0;
@@ -65,8 +67,6 @@ public class OrderList {    // TODO :: 메뉴 어레이리스트
 
         OrderMain.orderMenuNum = 0;
 
-//        clearOrderList();   // TODO :: 장바구니 초기화
-//        setOrderNum(ordernum);  //
 
         OrderController oc = new OrderController();
 

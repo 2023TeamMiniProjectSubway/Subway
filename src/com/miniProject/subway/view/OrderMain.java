@@ -17,9 +17,10 @@ public class OrderMain {
     public static boolean paycancel = false;
     public static boolean showMenuAgain = false;
 
+
+    /** 메뉴 선택창_1 메소드 */
     public void orderMenu(){
 
-//        Main callmain = new Main();
 
         while(orderfinish == false){
         while(true) {
@@ -51,10 +52,7 @@ public class OrderMain {
                             return;
                         }
                         continue;
-//                        callmain.MainMenu();
 
-//                        System.out.println("메인갔다왔어?");
-//                        break;
                     case 3:
                         premiumMenu();
                         break;
@@ -63,7 +61,7 @@ public class OrderMain {
                         break;
                     case 0:
                         System.out.println("                            ▶ 이전 메뉴로 돌아갑니다.                         ");
-                        oc.clearMenu();                                 //메뉴 초기화
+                        oc.clearMenu();
                         orderMenuNum = 0;
                         sc.nextLine();
                         return;
@@ -78,12 +76,13 @@ public class OrderMain {
          }
         }
         if(orderfinish ==  true){
-//            System.out.println("주문 끝났나요? : " + orderfinish);
             return;
         }
 
     }
 
+
+    /** 클래식 메뉴 메소드  */
     public void classicMenu(){
 
         while(true){
@@ -100,24 +99,23 @@ public class OrderMain {
             System.out.println("=================================================================================");
 
             try {
-                int classicMenu = sc.nextInt();         //주문할 메뉴 선택
+                int classicMenu = sc.nextInt();
                 choice = classicMenu - 1;
 
                 switch (classicMenu) {
                     case 1:  case 2: case 3: case 4: case 5:
-                        oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-//                        System.out.println("이전메뉴로 돌아왔어"); // 응 돌아왔어
-//                        System.out.println("주문 끝낼거야?" + orderfinish);
+                        oc.showMenuDetail(choice);
+
                         if(showMenuAgain == true)
                         {
                             continue;
                         }
 
-                            if (orderContinue() == true) {               //계속 주문할지 선택
+                            if (orderContinue() == true) {
 
                                 continue;
                             } else {
-//                                System.out.println("주문 끝!");
+
                                 return;
                             }
 
@@ -137,6 +135,8 @@ public class OrderMain {
 
     }
 
+
+    /** 프레쉬&라이트 메소드 */
     public void freshlightMenu(){
         while(true) {
             System.out.println("=================================================================================");
@@ -153,17 +153,16 @@ public class OrderMain {
             System.out.println("=================================================================================");
 
             try {
-                int classicMenu = sc.nextInt();         //주문할 메뉴 선택
-                choice = classicMenu + 4;               // 5~10
+                int classicMenu = sc.nextInt();
+                choice = classicMenu + 4;
 
                 switch (classicMenu) {
                     case 1: case 2: case 3: case 4: case 5:  case 6:
-                        oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-                        if (orderContinue() == true) {              //계속 주문할지 선택
+                        oc.showMenuDetail(choice);
+                        if (orderContinue() == true) {
                             continue;
                         } else {
-//                            System.out.println("주문 끝!");
-                            // 결제화면으로 넘어가기
+
                             return;
                         }
 
@@ -182,6 +181,7 @@ public class OrderMain {
         }
     }
 
+    /** 프리미엄 메뉴 메소드 */
     public void premiumMenu(){
 
         while(true) {
@@ -201,17 +201,17 @@ public class OrderMain {
 
 
             try{
-            int classicMenu = sc.nextInt();         //주문할 메뉴 선택
-            choice = classicMenu + 10;               // 11~17
+            int classicMenu = sc.nextInt();
+            choice = classicMenu + 10;
 
             switch (classicMenu) {
                 case 1:     case 2:     case 3:     case 4:     case 5:     case 6:     case 7:
-                    oc.showMenuDetail(choice);                  //선택한 숫자를 orderMenu에 넣음
-                    if (orderContinue() == true) {              //계속 주문할지 선택
+                    oc.showMenuDetail(choice);
+                    if (orderContinue() == true) {
                         continue;
                     } else {
                         System.out.println("주문 끝!");
-                                                                // 결제화면으로 넘어가기
+
                         return;
                     }
 
@@ -230,6 +230,7 @@ public class OrderMain {
 
     }
 
+    /** 랍스타 메소드 */
     public void newMenu(){
 
         while(true){
@@ -243,17 +244,17 @@ public class OrderMain {
             System.out.println("=================================================================================");
 
             try {
-                int classicMenu = sc.nextInt();         //주문할 메뉴 선택
-                choice = classicMenu + 17;               // 18
+                int classicMenu = sc.nextInt();
+                choice = classicMenu + 17;
 
                 switch (classicMenu) {
                     case 1:
-                        oc.showMenuDetail(choice);                  //선택한 숫자를 orderMenu에 넣음
-                        if (orderContinue() == true) {              //계속 주문할지 선택
+                        oc.showMenuDetail(choice);
+                        if (orderContinue() == true) {
                             continue;
                         } else {
                             System.out.println("주문 끝!");
-                            // 결제화면으로 넘어가기
+
                             return;
                         }
 
@@ -271,6 +272,7 @@ public class OrderMain {
         }
     }
 
+    /** 추가 주문 메소드 */
     public boolean orderContinue(){
         boolean result = true;
         while(true) {
@@ -284,10 +286,10 @@ public class OrderMain {
                 int orderContinue = sc.nextInt();
 
                 switch (orderContinue) {
-                    case 1:                                //계속 주문 -> 원래 메뉴로 이동
+                    case 1:
                         result = true;
                         return result;
-                    case 2:                                //주문 끝 -> 결제창으로 이동
+                    case 2:
                         result = false;
 
                         oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)   // 여기에 clear없ㄱ어야함
@@ -300,7 +302,6 @@ public class OrderMain {
                             orderfinish = true;
                             return result;
                         }
-//                        System.out.println("계속 주문 안해서 주문 끝 (orderContinue): " + orderfinish);
 
                     default:
                         System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
