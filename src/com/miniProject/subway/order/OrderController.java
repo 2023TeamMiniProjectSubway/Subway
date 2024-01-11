@@ -23,6 +23,9 @@ public class OrderController {
 
 
 
+    public static int orderMenuNum = 0;
+
+
 
     String [] breadlist = new String[]{"화이트", "하티", "파마산오레가노", "위트", "허니오트", "플랫브레드"};
     String [] vegetable = new String[]{"양상추", "토마토", "오이", "피망", "양파", "피클", "올리브", "할라피뇨", "아보카도"};
@@ -189,7 +192,6 @@ public class OrderController {
     }
 
 
-
     public void lastBasket() {
 
         System.out.println("======================================");
@@ -204,6 +206,7 @@ public class OrderController {
 
         OrderMain orderMain = new OrderMain();      // TODO :: 제발 되라
 
+
         int pick = sc.nextInt();
         switch (pick) {
             case 1:
@@ -213,8 +216,13 @@ public class OrderController {
                 cardPayment();
                 break;
             case 0:
+
                 return;
 //            orderMain.orderContinue();
+
+//                 orderMain.orderContinue();   //맞는지확
+//                 return;
+
             default:
                 System.out.println("선택할 수 없습니다. 다시 선택해주세요.");
 
@@ -270,10 +278,12 @@ public class OrderController {
                 return;
             } else {
                 System.out.println("이전 페이지로 되돌아갑니다.");
+
 //                return;
 //                orderMain.orderContinue();    // TEST
                   lastBasket();
 //                continue;
+
             }
         }
     }
@@ -305,7 +315,7 @@ public class OrderController {
                 if (payCash < priceBasket()) {
                     System.out.println("금액이 부족합니다. 지불하신 금액을 확인해주세요");
                     continue;
-//                    orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지? todo :: 의도 하였습니다.
+                  orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지? todo :: 의도 하였습니다.
                     //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
                 } else if (payCash == priceBasket()) {
                     System.out.println(payCash + "원이 " + "계산되었습니다. 감사합니다♥ ");
@@ -316,6 +326,16 @@ public class OrderController {
                     orderList.orderComplete();
                     //break;  // TODO :: 여기서 끝나야해
                     return;
+// 24.01.11 메인 merge 후 확인할부분
+                 
+//                    orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지?
+//                     //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
+//                 } else if (payCash == priceBasket()) {
+//                     System.out.println(payCash + "원이" + "계산되었습니다.");
+//                     System.out.println("적립 포인트  : ▶ " + payPoint() + " ◀");
+//                     orderList.orderComplete();
+//                     break;
+
                 } else {
                     System.out.println("=====================================");
                     System.out.println("주문 총 금액 : ▶ " + (priceBasket()) + " ◀");
@@ -323,7 +343,9 @@ public class OrderController {
                     System.out.println("적립 포인트  : ▶ " + payPoint() + " ◀");
                     System.out.println("-------------------------------------");
                     System.out.println("주문이 완료되었습니다. 감사합니다 ^_^ ");
+
                     clearMenu();
+
                     System.out.println("-------------------------------------");
                     orderList.orderComplete();
                     System.out.println("=====================================");
@@ -332,7 +354,9 @@ public class OrderController {
                 }
             } else {
                 System.out.println("이전 페이지로 되돌아갑니다.");
-                lastBasket();
+
+//                 orderMain.orderContinue();
+
             }
         }
     }
@@ -559,8 +583,5 @@ public class OrderController {
         addTopping.clear();
 //        System.out.println(ordermenu);
     }
-
-
-
 
 }
