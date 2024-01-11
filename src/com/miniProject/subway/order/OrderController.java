@@ -6,7 +6,7 @@ import com.miniProject.subway.view.OrderList;
 
 import java.util.*;
 
-import static com.miniProject.subway.view.OrderMain.orderMenuNum;
+import static com.miniProject.subway.view.OrderMain.*;
 
 
 public class OrderController {
@@ -103,6 +103,8 @@ public class OrderController {
                     case 2:                            // 다시 메뉴 디테일 보여주기
                         break;
                     case 0:                            // 돌아가기
+                        // 이전 메뉴로 가야하는데 왜 계속 주문하겠냐로 돌아가는가
+                        showMenuAgain = true;
                         return;
                     default:
                         System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.           ");
@@ -216,9 +218,9 @@ public class OrderController {
                 cardPayment();
                 break;
             case 0:
+                paycancel = true;
 
-                return;
-//            orderMain.orderContinue();
+            orderMain.orderContinue();
 
 //                 orderMain.orderContinue();   //맞는지확
 //                 return;
@@ -281,7 +283,8 @@ public class OrderController {
 
 //                return;
 //                orderMain.orderContinue();    // TEST
-                  lastBasket();
+                  golastbasket();
+
 //                continue;
 
             }
@@ -315,7 +318,7 @@ public class OrderController {
                 if (payCash < priceBasket()) {
                     System.out.println("금액이 부족합니다. 지불하신 금액을 확인해주세요");
                     continue;
-                  orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지? todo :: 의도 하였습니다.
+                 // orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지? todo :: 의도 하였습니다.
                     //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
                 } else if (payCash == priceBasket()) {
                     System.out.println(payCash + "원이 " + "계산되었습니다. 감사합니다♥ ");
@@ -354,7 +357,7 @@ public class OrderController {
                 }
             } else {
                 System.out.println("이전 페이지로 되돌아갑니다.");
-
+                    golastbasket();
 //                 orderMain.orderContinue();
 
             }
@@ -443,7 +446,7 @@ public class OrderController {
                         System.out.println("                            ▷ 1. 예                                            ");
                         System.out.println("                            ▷ 2. 아니오                                        ");
                         System.out.println("=================================================================================");
-
+                        //잘못입력함 -> 잘못입력했다고 함 -> 야채빼는 번호 고름 -> (*) 또 번호 고르라고함 -> (*)고르면 계속 뺴시겠습니까 를 보여주고 바로 야채목록을 보여줌
                         try {
                             int continuuVeg = sc.nextInt();
 
@@ -523,7 +526,7 @@ public class OrderController {
 
                     System.out.println("현재 추가한 토핑 : " + addToppingSet);
 
-                    toppinecontinue:
+                    toppingcontinue:
                     while(true){
                         System.out.println("=================================================================================");
                         System.out.println("                            ▷ 계속 추가하시겠습니까?                                ");
@@ -536,7 +539,7 @@ public class OrderController {
 
                             switch (continueAddTop) {
                                 case 1:                            //계속 추가
-                                    break toppinecontinue;
+                                    break toppingcontinue;
                                 case 2:                            //주문 끝 -> 원래 있던 자리로
                                     System.out.println("주문 끝났대요~!");
                                     addTopping.add(addToppingSet);
@@ -582,6 +585,10 @@ public class OrderController {
         minusVegetable.clear();
         addTopping.clear();
 //        System.out.println(ordermenu);
+    }
+
+    public void golastbasket(){
+        lastBasket();
     }
 
 }

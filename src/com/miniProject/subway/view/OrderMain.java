@@ -2,7 +2,7 @@ package com.miniProject.subway.view;
 
 import com.miniProject.subway.menu.MenuDTO;
 import com.miniProject.subway.order.OrderController;
-
+import com.miniProject.subway.view.Main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,8 +14,12 @@ public class OrderMain {
     int choice;
     boolean orderfinish = false;            //주문끝난지 확인
     public static int orderMenuNum = 0;
+    public static boolean paycancel = false;
+    public static boolean showMenuAgain = false;
 
     public void orderMenu(){
+
+        Main callmain = new Main();
 
         while(orderfinish == false){
         while(true) {
@@ -42,7 +46,15 @@ public class OrderMain {
                         continue;
                     case 2:
                         freshlightMenu();
-                        break;
+                        if (orderfinish == true) {
+                            orderfinish = false;
+                            return;
+                        }
+                        continue;
+//                        callmain.MainMenu();
+
+//                        System.out.println("메인갔다왔어?");
+//                        break;
                     case 3:
                         premiumMenu();
                         break;
@@ -94,13 +106,21 @@ public class OrderMain {
                 switch (classicMenu) {
                     case 1:  case 2: case 3: case 4: case 5:
                         oc.showMenuDetail(choice);               //선택한 숫자를 orderMenu에 넣음
-                        if (orderContinue() == true) {               //계속 주문할지 선택
+                        System.out.println("이전메뉴로 돌아왔어"); // 응 돌아왔어
+                        System.out.println("주문 끝낼거야?" + orderfinish);
+                        if(showMenuAgain == true)
+                        {
                             continue;
-                        } else {
-                            System.out.println("주문 끝!");
-
-                            return;
                         }
+
+                            if (orderContinue() == true) {               //계속 주문할지 선택
+
+                                continue;
+                            } else {
+                                System.out.println("주문 끝!");
+                                return;
+                            }
+
 
                     case 0:
                         return;
@@ -271,10 +291,17 @@ public class OrderMain {
                         result = false;
 
                         oc.lastBasket(); // TODO :: 결제할 때의 장바구니 (마지막)   // 여기에 clear없ㄱ어야함
-                        orderfinish = true;
+                        if(paycancel == true)
+                        {
+                            orderfinish = false;
+                            return result;
+                        }
+                        else{
+                            orderfinish = true;
+                            return result;
+                        }
 //                        System.out.println("계속 주문 안해서 주문 끝 (orderContinue): " + orderfinish);
 
-                        return result;
                     default:
                         System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
                         continue;
@@ -286,4 +313,6 @@ public class OrderMain {
             }
         }
     }
+
+
 }
