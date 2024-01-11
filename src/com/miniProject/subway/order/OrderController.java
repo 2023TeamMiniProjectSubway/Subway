@@ -107,12 +107,12 @@ public class OrderController {
                         showMenuAgain = true;
                         return;
                     default:
-                        System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.           ");
+                        System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.           ");
                         break;
                 }
             }catch (InputMismatchException e)
             {
-                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.                  ");
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.                  ");
                 sc.nextLine();
             }
         }
@@ -160,28 +160,28 @@ public class OrderController {
             System.out.println();
             System.out.println("                                ◇ " + ordermenu.get(i));
             System.out.println();
-            System.out.println("                                  └ 빵 : " + choosebread.get(i));
+            System.out.println("                                  └ 🥯 빵 : " + choosebread.get(i));
 //            System.out.println("뺄 야채 : " + minusVegetable.size());
             if(minusVegetable.get(i).size() == 0)
             {
-                System.out.println("                                  └ 뺄 야채 : " + "없음");
+                System.out.println("                                  └ 🥗 뺄 야채 : " + "없음");
 
             }
             else {
 
-                System.out.println("                                  └ 뺄 야채 : " + minusVegetable.get(i));
+                System.out.println("                                  └ 🥗 뺄 야채 : " + minusVegetable.get(i));
             }
             if(addTopping.get(i).size() == 0 )
             {
-                System.out.println("                                  └ 추가할 토핑 : " + "없음");
+                System.out.println("                                  └ 🧀 추가할 토핑 : " + "없음");
             }
             else {
-                System.out.println("                                  └ 추가할 토핑 : " + addTopping.get(i));
+                System.out.println("                                  └ 🧀 추가할 토핑 : " + addTopping.get(i));
             }
         }
         System.out.println();
         System.out.println();
-        System.out.println("                            √ 현재 총 가격 : " + sum          );
+        System.out.println("                            √ 💰 현재 총 가격 : " + sum          );
         //-----------------------------------------------
 
     }
@@ -197,12 +197,12 @@ public class OrderController {
     public void lastBasket() {
         while(true) {
             try {
-                sc.nextLine();
+
                 System.out.println("=================================================================================");
                 menuBasket();
                 System.out.println("                            ▷ 현재 선택하신 메뉴 총 금액 : " + priceBasket());
                 System.out.println("=================================================================================");
-                System.out.println("                            ▷ 결제 도와드리겠습니다.                                ");
+                System.out.println("                            ▷ 💁‍♂️ 결제 도와드리겠습니다.                                ");
                 System.out.println("                            ▷ 1. 현금 결제                                         ");
                 System.out.println("                            ▷ 2. 카드 결제                                        ");
                 System.out.println("                            ▷ 0. 이전 메뉴로                                      ");
@@ -230,11 +230,12 @@ public class OrderController {
 
                     default:
                         System.out.println(pick);
-                        System.out.println("                            ▷ 선택할 수 없습니다. 다시 선택해주세요.");
+                        System.out.println("                            ▷ 😥 선택할 수 없습니다. 다시 선택해주세요.");
 
                 }
             } catch (InputMismatchException e) {
-                System.out.println("                            ▷ 잘못 선택하셨습니다. 다시 선택해주세요.");
+                System.out.println("                            ▶ 😥 잘못 선택하셨습니다. 다시 선택해주세요.");
+                sc.nextLine();
                 continue;                           //continue를 하기위한 while문
             }
         }
@@ -242,32 +243,37 @@ public class OrderController {
     }
 
     public void backMenu(){
-        System.out.println();
-        System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
-        System.out.println("                            ▷ 1. 장바구니");
-        System.out.println("");
-        System.out.println("                            ▷ 0. 초기화면");
+        while(true) {
+            System.out.println();
+            System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
+            System.out.println("                            ▷ 1. 장바구니");
+            System.out.println("");
+            System.out.println("                            ▷ 0. 초기화면");
 
-        System.out.println("=================================================================================");
+            System.out.println("=================================================================================");
 
-
-        int backmenu = sc.nextInt();
-        switch (backmenu){
-            case 1:
+            try {
+                int backmenu = sc.nextInt();
+                switch (backmenu) {
+                    case 1:
 //                basket();
 //                priceBasket();
-                lastBasket();
+                        lastBasket();
 
 
-            case 0:
-                clearMenu();
-                orderMenuNum = 0;
-                Main.login = false;
-                Main main = new Main();
-                main.MainMenu();
+                    case 0:
+                        clearMenu();
+                        orderMenuNum = 0;
+                        Main.login = false;
+                        Main main = new Main();
+                        main.MainMenu();
 
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.                 ");
+                sc.nextLine();
+            }
         }
-
     }
 
 
@@ -301,33 +307,40 @@ public class OrderController {
 
         while(true) {
 
-            System.out.println("                            ▷ 카드 결제 입니다");
+            System.out.println("                            ▷ 💳 카드 결제 입니다");
             System.out.println("                            ▷ 주문 내역을 확인 해주세요");
             basket();
             System.out.println("                            ▷ 주문 총 금액 : " + priceBasket());
             System.out.println("=================================================================================");
             System.out.println();
             System.out.println("                            ▷ 1. 결제하기");
-            System.out.println("                            ▷ 2. 취소하기");
+            System.out.println("                            ▶ 2. 취소하기");
 
             Scanner sc = new Scanner(System.in);
+
+            try{
             int choice = sc.nextInt();
 
             if (choice == 1) {
-                System.out.println("                            ▶ 결제가 완료되었습니다.");
+                System.out.println("                            ▷ 😊 결제가 완료되었습니다.");
                 orderList.orderComplete();
-                System.out.println("                            ▶" + priceBasket() );
-                System.out.println("                            ▶ " + payPoint() );
+                System.out.println("                            ▷" + priceBasket() );
+                System.out.println("                            ▷ " + payPoint() );
                 return;
             } else {
                 System.out.println("                            ▶ 이전 페이지로 되돌아갑니다.");
 
 //                return;
 //                orderMain.orderContinue();    // TEST
-                  golastbasket();
+                golastbasket();
 
 //                continue;
 
+            }
+            }catch(InputMismatchException e){
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.");
+                sc.nextLine();
+                continue;
             }
         }
     }
@@ -340,39 +353,40 @@ public class OrderController {
         while(true) {
 
 
-            System.out.println("                            ▶ 현금 결제 입니다");
-            System.out.println("                            ▶ 주문 내역을 확인해주세요 ◀");
+            System.out.println("                            ▷ 💸 현금 결제 입니다");
+            System.out.println("                            ▷ 주문 내역을 확인해주세요 ◀");
             basket();
-            System.out.println("                            ▶ 주문 총 금액 : " + priceBasket());
+            System.out.println("                            ▷ 주문 총 금액 : " + priceBasket());
             System.out.println("=================================================================================");
-            System.out.println();
-            System.out.println("                            ▶ 1. 결제하기");
+            System.out.println("                            ▷ 1. 결제하기");
             System.out.println("                            ▶ 2. 취소하기");
 
             Scanner sc = new Scanner(System.in);
-            int cash = sc.nextInt();
+
+            try {
+                int cash = sc.nextInt();
 
 
-            if (cash == 1) {
-                System.out.println("                            ▷ 지불할 금액을 입력해주세요.");
-                sc.nextLine();
-                int payCash = sc.nextInt();         // 지불할 금액 입력
-                if (payCash < priceBasket()) {
-                    System.out.println("                            ▷ 금액이 부족합니다. 지불하신 금액을 확인해주세요");
-                    continue;
-                 // orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지?   :: 의도 하였습니다.
-                    //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
-                } else if (payCash == priceBasket()) {
-                    System.out.println("                            ▷ " + payCash + "원이 " + "계산되었습니다. 감사합니다♥ ");
-                    System.out.println("                            ▷ 적립 포인트  : " + payPoint() + " ◀");
+                if (cash == 1) {
+                    System.out.println("                            ▷ 지불할 금액을 입력해주세요.");
+                    sc.nextLine();
+                    int payCash = sc.nextInt();         // 지불할 금액 입력
+                    if (payCash < priceBasket()) {
+                        System.out.println("                            ▷ 😥 금액이 부족합니다. 지불하신 금액을 확인해주세요");
+                        continue;
+                        // orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지?   :: 의도 하였습니다.
+                        //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
+                    } else if (payCash == priceBasket()) {
+                        System.out.println("                            ▷ " + payCash + "원이 " + "계산되었습니다. 감사합니다♥ ");
+                        System.out.println("                            ▷ 적립 포인트  : " + payPoint() + " ◀");
 
-                    clearMenu();
+                        clearMenu();
 
-                    orderList.orderComplete();
-                    //break;  // TODO :: 여기서 끝나야해
-                    return;
+                        orderList.orderComplete();
+                        //break;  // TODO :: 여기서 끝나야해
+                        return;
 // 24.01.11 메인 merge 후 확인할부분
-                 
+
 //                    orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지?
 //                     //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
 //                 } else if (payCash == priceBasket()) {
@@ -381,27 +395,32 @@ public class OrderController {
 //                     orderList.orderComplete();
 //                     break;
 
+                    } else {
+                        System.out.println("=================================================================================");
+                        System.out.println("                            ▷ 주문 총 금액 : " + (priceBasket()) + " ◀");
+                        System.out.println("                            ▷ 남은 잔돈 : " + (payCash - priceBasket()) + " ◀");
+                        System.out.println("                            ▷ 적립 포인트 : " + payPoint() + " ◀");
+                        System.out.println("=================================================================================");
+                        System.out.println("                          😋 주문이 완료되었습니다. 감사합니다 ★ ");
+
+                        clearMenu();
+
+                        System.out.println("");
+                        orderList.orderComplete();
+                        System.out.println("=================================================================================");
+                        return;
+
+                    }
                 } else {
-                    System.out.println("=================================================================================");
-                    System.out.println("                            ▷ 주문 총 금액 : " + (priceBasket()) + " ◀");
-                    System.out.println("                            ▷ 남은 잔돈 : " + (payCash - priceBasket()) + " ◀");
-                    System.out.println("                            ▷ 적립 포인트 : " + payPoint() + " ◀");
-                    System.out.println("=================================================================================");
-                    System.out.println("                            주문이 완료되었습니다. 감사합니다 ★ ");
-
-                    clearMenu();
-
-                    System.out.println("");
-                    orderList.orderComplete();
-                    System.out.println("=================================================================================");
-                    return;
-
-                }
-            } else {
-                System.out.println("                            ▷ 이전 페이지로 되돌아갑니다.");
+                    System.out.println("                            ▷ 이전 페이지로 되돌아갑니다.");
                     golastbasket();
 //                 orderMain.orderContinue();
 
+                }
+            }catch(InputMismatchException e)
+            {
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.      ");
+                sc.nextLine();
             }
         }
     }
@@ -410,7 +429,7 @@ public class OrderController {
 
         while(true) {
             System.out.println("=================================================================================");
-            System.out.println("                            ▷ 빵을 선택해 주세요.                                   ");
+            System.out.println("                            ▷ 🥯 빵을 선택해 주세요.                                   ");
             System.out.println("---------------------------------------------------------------------------------");
             System.out.println("                            ▷ 1. 화이트                                           ");
             System.out.println("                            ▷ 2. 하티                                            ");
@@ -430,11 +449,11 @@ public class OrderController {
 //            System.out.println("고른 빵은 : " + choosebread + "입니다.");
                         return;
                     default:
-                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
+                        System.out.println("                            ▶ 😥 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
                         break;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.                 ");
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.                 ");
                 sc.nextLine();
             }
         }
@@ -446,7 +465,7 @@ public class OrderController {
         Set<String> minusVegetableSet = new HashSet();
         while(true) {
             System.out.println("=================================================================================");
-            System.out.println("                            ▷ 뺄 야채를 선택해 주세요.                             ");
+            System.out.println("                            ▷ 🥗 뺄 야채를 선택해 주세요.                             ");
             System.out.println("---------------------------------------------------------------------------------");
             System.out.println("                            ▷ 1. 양상추                                            ");
             System.out.println("                            ▷ 2. 토마토                                            ");
@@ -500,12 +519,12 @@ public class OrderController {
                                     System.out.println(minusVegetable);
                                     return;
                                 default:
-                                    System.out.println("                            ▶ 잘못 입력하셨습니다. 다시 입력해주세요.");
+                                    System.out.println("                            ▶ 😥 잘못 입력하셨습니다. 다시 입력해주세요.");
                                     break;
                             }
                         }catch(InputMismatchException e)
                         {
-                            System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.        ");
+                            System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.        ");
                             sc.nextLine();
                         }
                     }
@@ -523,12 +542,12 @@ public class OrderController {
 //                System.out.println(ordermenu + "의 뺄 야채 : " + minusVegetableset);
                     return;
                 } else {
-                    System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
+                    System.out.println("                            ▶ 😥 번호를 잘못 입력하였습니다. 다시 입력해주세요.");
                     continue;
                 }
             } catch(InputMismatchException e)
             {
-                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.           ");
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.           ");
                 sc.nextLine();
             }
         }
@@ -538,7 +557,7 @@ public class OrderController {
         Set<String> addToppingSet = new HashSet<>();
         while(true) {
             System.out.println("=================================================================================");
-            System.out.println("                            ▷ 추가할 토핑을 선택해 주세요.                             ");
+            System.out.println("                            ▷ 🧀 추가할 토핑을 선택해 주세요.                             ");
             System.out.println("---------------------------------------------------------------------------------");
             System.out.println("                            ▷ 1. 미트 추가                                         ");
             System.out.println("                            ▷ 2. 에그마요                                          ");
@@ -588,12 +607,12 @@ public class OrderController {
                                     System.out.println((orderMenuNum + 1) + "번째 토핑 목록 : " + addTopping.get(orderMenuNum));
                                     return;
                                 default:
-                                    System.out.println("                            ▶ 번호를 잘못 입력하셨습니다. 다시 입력해주세요.     ");
+                                    System.out.println("                            ▶ 😥 번호를 잘못 입력하셨습니다. 다시 입력해주세요.     ");
                                     break;
                             }
                         }catch(InputMismatchException e)
                         {
-                            System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.    ");
+                            System.out.println("                            ▶ 😥 번호를 잘못 입력하였습니다. 다시 입력해주세요.    ");
                             sc.nextLine();
                         }
                     }
@@ -611,7 +630,7 @@ public class OrderController {
                 }
             } catch(InputMismatchException e)
             {
-                System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.           ");
+                System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.           ");
                 sc.nextLine();
             }
         }

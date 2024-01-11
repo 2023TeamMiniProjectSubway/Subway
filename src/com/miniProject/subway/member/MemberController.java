@@ -16,7 +16,7 @@ public class MemberController{                    // login여부를 바꾸기 �
         membercheck :
         while(true){
             System.out.println("=================================================================================");
-            System.out.println("                            ▷ 아이디와 비밀번호를 입력해주세요    ");
+            System.out.println("                            ▷ 🙍‍♂️ 아이디와 비밀번호를 입력해주세요    ");
             System.out.println("=================================================================================");
             System.out.println("                            ▷ ID :                                              ");
             String id = sc.nextLine();
@@ -36,7 +36,7 @@ public class MemberController{                    // login여부를 바꾸기 �
                     if(memberDTO.get(i).getPwd().equals(pwd))        //비밀번호 같은지 검사
                     {
                         System.out.println("=================================================================================");
-                        System.out.println("                            ▷ 로그인되었습니다.            ");   //id, pwd 일치할시 로그인
+                        System.out.println("                            ▷ 🙆‍♂️ 로그인되었습니다.            ");   //id, pwd 일치할시 로그인
                         System.out.println("=================================================================================");
                         Main.login = true;                               //로그인 되어있음
                         return;
@@ -47,7 +47,7 @@ public class MemberController{                    // login여부를 바꾸기 �
             incorrect :
             while(true) {
                 System.out.println("=================================================================================");
-                System.out.println("                            ▶ 회원정보가 일치하지 않습니다.                          ");
+                System.out.println("                            ▶ 🙅️ 회원정보가 일치하지 않습니다.                          ");
                 System.out.println("                            ▷ 회원가입하시겠습니까?                                 ");
                 System.out.println("                            ▷ 1. 예                                              ");
                 System.out.println("                            ▷ 2. 아니오(로그인화면으로 돌아갑니다.)                    ");
@@ -70,12 +70,12 @@ public class MemberController{                    // login여부를 바꾸기 �
                             System.out.println("                            ▶ 이전 화면으로 돌아갑니다.     ");
                             return;
                         default:
-                            System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요. ");
+                            System.out.println("                            ▶ 😥 번호를 잘못 입력하였습니다. 다시 입력해주세요. ");
                             continue;
                     }
                 }catch(InputMismatchException e)
                 {
-                    System.out.println("                            ▶ 잘못 입력하였습니다. 다시 입력해주세요.             ");
+                    System.out.println("                            ▶ 😥 잘못 입력하였습니다. 다시 입력해주세요.             ");
                     sc.nextLine();
                 }
             }
@@ -88,7 +88,7 @@ public class MemberController{                    // login여부를 바꾸기 �
 
     public void memberRegister(){
         System.out.println("=================================================================================");
-        System.out.println("                            ▷ 회원 가입을 진행합니다.       ");
+        System.out.println("                            ▷ 🙋‍♂️ 회원 가입을 진행합니다.       ");
         String id = "";
 
         while(true)
@@ -113,13 +113,13 @@ public class MemberController{                    // login여부를 바꾸기 �
             }
             if(id.equals(""))
             {
-                System.out.println("                            ▷ ID가 입력되지 않았습니다.       ");
+                System.out.println("                            ▷ 🤷‍♂️ ID가 입력되지 않았습니다.       ");
                 continue;
             }
             for(int i = 0; i < memberDTO.size(); i++){                                   //이미 가입된 ID 확인
                 if(memberDTO.get(i).getid().equals(id)){
                     System.out.println("=================================================================================");
-                    System.out.println("                            ▶ 이미 가입된 ID입니다. 다시 입력해주세요.                 ");
+                    System.out.println("                            ▶ ❗ 이미 가입된 ID입니다. 다시 입력해주세요.                 ");
                     System.out.println("                                                                                 ");
                     System.out.println("                            ▶ 0. 이전 메뉴로                                       ");
                     System.out.println("=================================================================================");
@@ -155,7 +155,7 @@ public class MemberController{                    // login여부를 바꾸기 �
         //확인용
 //        memberDTO.get(id.indexOf(id)).information();
 
-        System.out.println("                            ▷ 회원가입이 완료되었습니다.      ");
+        System.out.println("                            ▷ 🙆‍♂️ 회원가입이 완료되었습니다.      ");
         System.out.println("=================================================================================");
 
 
