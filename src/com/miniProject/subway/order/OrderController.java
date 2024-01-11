@@ -87,10 +87,8 @@ public class OrderController {
                     case 1:
                         chooseBread();                               
                         minusVegetable();
-                        System.out.println(minusVegetable);
                         addTopping();
-                        System.out.println(addTopping);
-                        orderMenu(choice);            
+                        orderMenu(choice);
                         orderMenuNum++;
                         break showdetail;
                     case 2:                           
@@ -113,7 +111,7 @@ public class OrderController {
     /** 주문한 메뉴를 보여주는 메소드 */
     public void orderMenu(int choice){
 
-        System.out.println("현재 주문하신 메뉴 개수 : " + (orderMenuNum + 1));
+        System.out.println("                            ▷ 현재 주문하신 메뉴 개수 : " + (orderMenuNum + 1));
 
         ordermenu.add(menuDTO.get(choice).getMenuname());
         orderprice.add(menuDTO.get(choice).getPrice());
@@ -188,7 +186,6 @@ public class OrderController {
 
 
                 int pick = sc.nextInt();
-                System.out.println(pick);
 
                 switch (pick) {
                     case 1:
@@ -201,7 +198,6 @@ public class OrderController {
                         backMenu();
 
                     default:
-                        System.out.println(pick);
                         System.out.println("                            ▷ 😥 선택할 수 없습니다. 다시 선택해주세요.");
 
                 }
@@ -220,7 +216,7 @@ public class OrderController {
     public void backMenu(){
         while(true) {
 
-            System.out.println();
+            System.out.println("");
             System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
             System.out.println("                            ▷ 1. 장바구니");
             System.out.println("");
@@ -492,7 +488,6 @@ public class OrderController {
                                     break minuscontinue;
                                 case 2:                        //토핑소스 고르는 메뉴로
                                     minusVegetable.add(minusVegetableSet);              //ArrayList(샌드위치당 야채)에 야채 Set 넣기
-                                    System.out.println(minusVegetable);
                                     return;
                                 default:
                                     System.out.println("                            ▶ 😥 잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -513,7 +508,7 @@ public class OrderController {
                     }
 
 
-                    System.out.println("현재 뺄 야채 : " + minusVegetableSet);
+                    System.out.println("                            ▷ 현재 뺄 야채 : " + minusVegetableSet);
                     minusVegetable.add(minusVegetableSet);
 
                     return;
@@ -562,7 +557,7 @@ public class OrderController {
 
                     addToppingSet.add(topping[topSelNum]);
 
-                    System.out.println("현재 추가한 토핑 : " + addToppingSet);
+                    System.out.println("                            ▷ 현재 추가한 토핑 : " + addToppingSet);
 
                     toppingcontinue:
                     while(true){
@@ -581,7 +576,8 @@ public class OrderController {
                                 case 2:
 
                                     addTopping.add(addToppingSet);
-                                    System.out.println((orderMenuNum + 1) + "번째 토핑 목록 : " + addTopping.get(orderMenuNum));
+                                    System.out.println("                       ▷ " + (orderMenuNum + 1) + "번째 토핑 목록 : " + addTopping.get(orderMenuNum));
+                                    System.out.println("=================================================================================");
                                     return;
                                 default:
                                     System.out.println("                            ▶ 😥 번호를 잘못 입력하셨습니다. 다시 입력해주세요.     ");
@@ -601,7 +597,7 @@ public class OrderController {
                         addToppingSet.add(topping[i]);
                     }
 
-                    System.out.println("현재 추가한 토핑 : " + addToppingSet);
+                    System.out.println("                       ▷ 현재 추가한 토핑 : " + addToppingSet);
                     addTopping.add(addToppingSet);
                     return;
                 }
