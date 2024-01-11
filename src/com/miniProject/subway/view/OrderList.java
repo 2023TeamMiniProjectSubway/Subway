@@ -56,7 +56,11 @@ public class OrderList {    // TODO :: 메뉴 어레이리스트
             double dnum = Math.random();
             i = (int)(dnum * 10);
         }
-        System.out.println("고객님의 주문 번호는 [" + i + "] 입니다!");
+        System.out.println("                            ▷ 고객님의 주문 번호는 [" + i + "] 입니다!");
+        System.out.println("=================================================================================");
+        System.out.println();
+        System.out.println();
+
         int ordernum = getOrderNum();
 
         OrderMain.orderMenuNum = 0;

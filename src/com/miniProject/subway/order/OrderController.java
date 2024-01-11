@@ -198,15 +198,15 @@ public class OrderController {
         while(true) {
             try {
                 sc.nextLine();
-                System.out.println("======================================");
+                System.out.println("=================================================================================");
                 menuBasket();
-                System.out.println("현재 선택하신 메뉴 총 금액 : " + priceBasket());
-                System.out.println("======================================");
-                System.out.println("      ▷ 결제 도와드리겠습니다.            ");
-                System.out.println("      ▷ 1. 현금 결제                    ");
-                System.out.println("      ▷ 2. 카드 결제                     ");
-                System.out.println("      ▶ 0. 이전 메뉴로                   ");
-                System.out.println("======================================");
+                System.out.println("                            ▷ 현재 선택하신 메뉴 총 금액 : " + priceBasket());
+                System.out.println("=================================================================================");
+                System.out.println("                            ▷ 결제 도와드리겠습니다.                                ");
+                System.out.println("                            ▷ 1. 현금 결제                                         ");
+                System.out.println("                            ▷ 2. 카드 결제                                        ");
+                System.out.println("                            ▷ 0. 이전 메뉴로                                      ");
+                System.out.println("=================================================================================");
 
 
                 int pick = sc.nextInt();
@@ -221,7 +221,7 @@ public class OrderController {
                         break;
                     case 0:
                         backMenu();
-//                OrderMain orderMain = new OrderMain();      // TODO :: 제발 되라
+//                OrderMain orderMain = new OrderMain();      //
 //                orderMain.orderContinue();
 
 //                paycancel = true;
@@ -230,11 +230,11 @@ public class OrderController {
 
                     default:
                         System.out.println(pick);
-                        System.out.println("선택할 수 없습니다. 다시 선택해주세요.");
+                        System.out.println("                            ▷ 선택할 수 없습니다. 다시 선택해주세요.");
 
                 }
             } catch (InputMismatchException e) {
-                System.out.println("잘못 선택하셨습니다. 다시 선택해주세요.");
+                System.out.println("                            ▷ 잘못 선택하셨습니다. 다시 선택해주세요.");
                 continue;                           //continue를 하기위한 while문
             }
         }
@@ -245,7 +245,7 @@ public class OrderController {
         System.out.println();
         System.out.println("==============================돌아가고 싶은 메뉴를 선택해주세요======================");
         System.out.println("                            ▷ 1. 장바구니");
-        System.out.println("                            ▷ 2. 추가 주문하기");
+        System.out.println("");
         System.out.println("                            ▷ 0. 초기화면");
 
         System.out.println("=================================================================================");
@@ -257,12 +257,7 @@ public class OrderController {
 //                basket();
 //                priceBasket();
                 lastBasket();
-            case 2:
-                System.out.println("현재 주문 메뉴 갯수 : " + orderMenuNum);
 
-//                orderMenuNum++;
-                OrderMain orderMain = new OrderMain();
-                orderMain.orderMenu();
 
             case 0:
                 clearMenu();
@@ -286,7 +281,7 @@ public class OrderController {
     }
 
     public void menuBasket(){
-        System.out.println("선택하신 메뉴 " + ordermenu.toString());
+        System.out.println("                            ▷ 선택하신 메뉴 " + ordermenu.toString());
 
     }
 
@@ -306,25 +301,26 @@ public class OrderController {
 
         while(true) {
 
-            System.out.println("============카드 결제 입니다============");
-            System.out.println("      [주문 내역을 확인 해주세요]");
+            System.out.println("                            ▷ 카드 결제 입니다");
+            System.out.println("                            ▷ 주문 내역을 확인 해주세요");
             basket();
-            System.out.println("주문 총 금액 : " + priceBasket());
-            System.out.println("=====================================");
+            System.out.println("                            ▷ 주문 총 금액 : " + priceBasket());
+            System.out.println("=================================================================================");
             System.out.println();
-            System.out.println("1. 결제하기                   2. 취소하기");
+            System.out.println("                            ▷ 1. 결제하기");
+            System.out.println("                            ▷ 2. 취소하기");
 
             Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
 
             if (choice == 1) {
-                System.out.println("결제가 완료되었습니다.");
+                System.out.println("                            ▶ 결제가 완료되었습니다.");
                 orderList.orderComplete();
-                System.out.println("주문 총 금액 : ▶ " + priceBasket() + " ◀");
-                System.out.println("적립 포인트 : ▶ " + payPoint() + " ◀");
+                System.out.println("                            ▶" + priceBasket() );
+                System.out.println("                            ▶ " + payPoint() );
                 return;
             } else {
-                System.out.println("이전 페이지로 되돌아갑니다.");
+                System.out.println("                            ▶ 이전 페이지로 되돌아갑니다.");
 
 //                return;
 //                orderMain.orderContinue();    // TEST
@@ -344,30 +340,31 @@ public class OrderController {
         while(true) {
 
 
-            System.out.println("============현금 결제 입니다============");
-            System.out.println("      [주문 내역을 확인해주세요]");
+            System.out.println("                            ▶ 현금 결제 입니다");
+            System.out.println("                            ▶ 주문 내역을 확인해주세요 ◀");
             basket();
-            System.out.println("주문 총 금액 : " + priceBasket());
-            System.out.println("=====================================");
+            System.out.println("                            ▶ 주문 총 금액 : " + priceBasket());
+            System.out.println("=================================================================================");
             System.out.println();
-            System.out.println("1. 결제하기                  2. 취소하기");
+            System.out.println("                            ▶ 1. 결제하기");
+            System.out.println("                            ▶ 2. 취소하기");
 
             Scanner sc = new Scanner(System.in);
             int cash = sc.nextInt();
 
 
             if (cash == 1) {
-                System.out.println("지불할 금액을 입력해주세요.");
+                System.out.println("                            ▷ 지불할 금액을 입력해주세요.");
                 sc.nextLine();
                 int payCash = sc.nextInt();         // 지불할 금액 입력
                 if (payCash < priceBasket()) {
-                    System.out.println("금액이 부족합니다. 지불하신 금액을 확인해주세요");
+                    System.out.println("                            ▷ 금액이 부족합니다. 지불하신 금액을 확인해주세요");
                     continue;
-                 // orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지? todo :: 의도 하였습니다.
+                 // orderMain.orderContinue();                  //*금액이 부족함을 확인 후 계속 주문 으로 넘어가는걸 의도하셨는지?   :: 의도 하였습니다.
                     //*금액이 부족하면 지금까지 넣어놓은 메뉴가 초기화됨
                 } else if (payCash == priceBasket()) {
-                    System.out.println(payCash + "원이 " + "계산되었습니다. 감사합니다♥ ");
-                    System.out.println("적립 포인트  : ▶ " + payPoint() + " ◀");
+                    System.out.println("                            ▷ " + payCash + "원이 " + "계산되었습니다. 감사합니다♥ ");
+                    System.out.println("                            ▷ 적립 포인트  : " + payPoint() + " ◀");
 
                     clearMenu();
 
@@ -385,23 +382,23 @@ public class OrderController {
 //                     break;
 
                 } else {
-                    System.out.println("=====================================");
-                    System.out.println("주문 총 금액 : ▶ " + (priceBasket()) + " ◀");
-                    System.out.println("남은 잔돈 : ▶ " + (payCash - priceBasket()) + " ◀");
-                    System.out.println("적립 포인트  : ▶ " + payPoint() + " ◀");
-                    System.out.println("-------------------------------------");
-                    System.out.println("주문이 완료되었습니다. 감사합니다 ^_^ ");
+                    System.out.println("=================================================================================");
+                    System.out.println("                            ▷ 주문 총 금액 : " + (priceBasket()) + " ◀");
+                    System.out.println("                            ▷ 남은 잔돈 : " + (payCash - priceBasket()) + " ◀");
+                    System.out.println("                            ▷ 적립 포인트 : " + payPoint() + " ◀");
+                    System.out.println("=================================================================================");
+                    System.out.println("                            주문이 완료되었습니다. 감사합니다 ★ ");
 
                     clearMenu();
 
-                    System.out.println("-------------------------------------");
+                    System.out.println("");
                     orderList.orderComplete();
-                    System.out.println("=====================================");
+                    System.out.println("=================================================================================");
                     return;
 
                 }
             } else {
-                System.out.println("이전 페이지로 되돌아갑니다.");
+                System.out.println("                            ▷ 이전 페이지로 되돌아갑니다.");
                     golastbasket();
 //                 orderMain.orderContinue();
 

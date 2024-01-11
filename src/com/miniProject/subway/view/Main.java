@@ -63,13 +63,13 @@ public class Main {                             //메뉴화면
                     default:
                         sc.nextLine();
                         System.out.println(mainMenu);
-                        System.out.println("                            ▶ 번호를 잘못 입력하였습니다. 다시 입력해주세요.     ");
+                        System.out.println("                            ▷ 번호를 잘못 입력하였습니다. 다시 입력해주세요.     ");
                         // 왜자꾸 3?이 넘어오는가
                         break;
                 }
             }catch(InputMismatchException e)
             {
-                System.out.println(" 잘못 입력하였습니다. 다시 입력해주세요.");
+                System.out.println("                            ▷ 잘못 입력하였습니다. 다시 입력해주세요.");
                 sc.nextLine();
 
             }
